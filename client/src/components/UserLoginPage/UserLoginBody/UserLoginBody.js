@@ -9,11 +9,13 @@ const UserLoginBody = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const [passFiveDigitsError, setPassFiveDigitsError] = useState("");
   const [userList, setUserList] = useState([]);
   const [passInput, setPassInput] = useState();
   const [userInput, setUserInput] = useState();
+  
   const loginCheck = (username, pass) =>
   // need to add redirect for admin users
     userList.map((user) => {
@@ -26,6 +28,9 @@ const UserLoginBody = () => {
         setError("Failed, please try again");
       }
     });
+
+
+    
     
 
   const isPassBiggerThenFive = (pass) =>
@@ -78,11 +83,10 @@ const UserLoginBody = () => {
         <input className="checkbox" type="checkbox" />
         <label>Remember me</label>
       </div>
-      <p className="admin-btn" onClick={() => navigate("/adminpage")}>
-        Login as administrator
-      </p>
+    
       <button
         onClick={() => {
+
           loginCheck(userInput, passInput);
         }}
         className="button-6">

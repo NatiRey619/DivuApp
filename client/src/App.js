@@ -10,6 +10,7 @@ import Footer from "./components/UserLoginPage/Footer/Footer";
 import MyContext from "./MyContext";
 import { useContext, useState } from "react";
 import NotFound from "./components/HomePage/HomePageNavPages/NotFound/NotFound";
+import AdminPage from "./components/AdminPage/AdminPage";
 
 function App() {
 
@@ -31,6 +32,8 @@ function App() {
             <Route path="/myreports" element={<MyReports />} />
             <Route path="/logout" element={<LogOut />} />
             <Route path="/pmmanager" element={<PmManger />} />
+            <Route path="/adminpage" element={<AdminPage />} />
+
             <Route path="*" element={<NotFound />} />
 
           </Routes>

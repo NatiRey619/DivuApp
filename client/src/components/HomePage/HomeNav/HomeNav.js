@@ -12,9 +12,9 @@ const HomeNav = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
   // const { userInput, setUserInput } = useContext(MyContext);
   const [userInput, setUserInput] = useState('')
-
-  console.log(userInput)
-
+  const [isAdmin, setIsAdmin] = useState(false)
+  console.log(isAdmin)
+    
 
 
   const navigate = useNavigate();
@@ -36,6 +36,14 @@ const HomeNav = () => {
     <button class="dropbtn">My Profile 
     </button>
     <div className="dropdown-content">
+
+{ isAdmin 
+    ?       <a className="nav-page" onClick={() => navigate("/adminpage")}>Admin Panel</a>
+
+    : null
+}
+
+<a className="nav-page" onClick={() => navigate("/adminpage")}>Admin Panel</a>
     <a className="nav-page" onClick={() => navigate("/MyReports")}>My Reports</a>
     <a className="nav-page" onClick={() => navigate("/PmManager")}>PM Manager</a>
     <a className="nav-page" onClick={() => navigate("/LogOut")}>Log Out</a>
