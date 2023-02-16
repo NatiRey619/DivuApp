@@ -65,12 +65,12 @@ const StartShift = () => {
       <div className="start-shift">
         {" "}
         <button onClick={giveStartShift}>התחל משמרת</button>
-        <p>Start time : {startShift}</p>
+        <p>{startShift}</p>
       </div>
 
       <div className="end-shift">
         <button disabled={startShiftClicked} onClick={giveEndShift}>סיים משמרת</button>
-        <p>End time : {endShift}</p>
+        <p>{endShift}</p>
         
        <button onClick={formatShiftsTimes}>אפס שעון יומי</button>
       </div>

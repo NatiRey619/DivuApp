@@ -10,7 +10,10 @@ import { Avatar } from "@mui/material";
 
 const HomeNav = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
-  const { userInput, setUserInput } = useContext(MyContext);
+  // const { userInput, setUserInput } = useContext(MyContext);
+  const [userInput, setUserInput] = useState('')
+
+  console.log(userInput)
 
 
 
@@ -32,7 +35,7 @@ const HomeNav = () => {
   <div class="dropdown">
     <button class="dropbtn">My Profile 
     </button>
-    <div class="dropdown-content">
+    <div className="dropdown-content">
     <a className="nav-page" onClick={() => navigate("/MyReports")}>My Reports</a>
     <a className="nav-page" onClick={() => navigate("/PmManager")}>PM Manager</a>
     <a className="nav-page" onClick={() => navigate("/LogOut")}>Log Out</a>

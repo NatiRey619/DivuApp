@@ -19,7 +19,7 @@ const HomeDate = () => {
     <div className="home-date">
       <h1>Today date : {date}</h1>
       <h1>Current day : {dayOfWeekName}</h1>
-      <h1><HomeClock /></h1>
+      < HomeClock />
     </div>
   );
 };

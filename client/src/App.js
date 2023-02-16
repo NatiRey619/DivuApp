@@ -13,8 +13,9 @@ import NotFound from "./components/HomePage/HomePageNavPages/NotFound/NotFound";
 
 function App() {
 
-  const [userInput, setUserInput] = useState([]);
-  const [startShift, setStartShift] = useState();
+  const {userInput, setUserInput} = useState("");
+  console.log(userInput)
+  const [startShift, setStartShift] = useState("");
 
 
 
