@@ -10,6 +10,15 @@ import {
   deleteUserController,
   getOneUserController,
 } from "./controllers/UserControllers.js";
+
+import {
+  getAllReportsController,
+  getOneReportsController, // צריך לטפל בזה
+  addReportsController,
+  deleteReportsController,
+  updateReportsController
+} from "./controllers/ReportsControllers.js";
+
 dotenv.config();
 
 const { PORT, DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
@@ -32,7 +41,14 @@ app.put("/api/users/updateUser/:id", updateUserController);
 app.delete("/api/users/deleteUser/:id", deleteUserController);
 
 //routes for Reports
-app.post("/api/reports/addReport", addUserController);
+app.get("/api/reports/getAllReports", getAllReportsController);
+app.get("/api/reports/getOneReport/:id", getOneReportsController);
+app.post("/api/reports/addReport", addReportsController);
+app.put("/api/reports/updateReport/:id", updateReportsController);
+app.delete("/api/reports/deleteReport/:id", deleteReportsController);
+
+
+
 
 
 mongoose.connect(
@@ -44,7 +60,7 @@ mongoose.connect(
   (info) => {
     app.listen(PORT, () => {
       console.log("info", info);
-      console.log("i am listening");
+      console.log("LISTENING",'Server is running at port : ' + PORT);
     });
   }
 );

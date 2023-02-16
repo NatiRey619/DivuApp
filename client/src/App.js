@@ -35,7 +35,10 @@ function App() {
 }
 
 export const NotFound = () => {
-  return <div><h1> 404 page not found </h1> </div>
+  return <div>
+                <button onClick={() => navigate(-1)}>Go back</button>
+
+    <h1> 404 page not found </h1> </div>
 }
 
 export default App;
