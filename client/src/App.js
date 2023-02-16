@@ -14,11 +14,13 @@ import NotFound from "./components/HomePage/HomePageNavPages/NotFound/NotFound";
 function App() {
 
   const [userInput, setUserInput] = useState([]);
+  const [startShift, setStartShift] = useState();
+
 
 
   return (
     <BrowserRouter>
-      <MyContext.Provider value={{ userInput, setUserInput }}>
+      <MyContext.Provider value={{ userInput, setUserInput, startShift, setStartShift }}>
         <div className="main">
           <Routes>
             <Route path="/" element={<UserLoginPage />} />

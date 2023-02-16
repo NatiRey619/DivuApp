@@ -7,8 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 const PmManger = () => {
    const [postContent, setPostContent] = useState(""); // Declare a state variable...
+   const [workerName, setWorkerName] = useState("")
+   const [workerEmail, setWorkerEmail] = useState("")
    const [isEmptyContent, setisEmptyContent] = useState("");
-   
+   const [messageTime, setMessageTime] = useState("")
+   const [fullWorkerMessage, setFullWorkerMessage] = useState("")
+
+
 
    const { userInput, setUserInput } = useContext(MyContext);
   const navigate = useNavigate()
@@ -17,9 +22,23 @@ const PmManger = () => {
   function sendPmMessage(e) {
     if(postContent.length > 5){
       setPostContent(e.target.value)
-      setisEmptyContent('')
+      setWorkerName(e.target.value)
+      setWorkerEmail(e.target.value)
+      setMessageTime(new Date().toLocaleTimeString());
 
-      console.log(postContent)
+      setisEmptyContent('Message was sent successfuly !')
+
+      setFullWorkerMessage({
+        ...workerName,
+      });
+      
+
+
+      console.log("Worker name " + workerName )
+      console.log("Email " + workerEmail )
+      console.log("Message " + postContent )
+      console.log(messageTime)
+
     }
        else {
         setisEmptyContent('Please enter at least 5 words')
@@ -28,6 +47,8 @@ const PmManger = () => {
     
     };
 
+
+    
 
 
 
@@ -41,11 +62,11 @@ const PmManger = () => {
       {/* <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST"> */}
       <div className="form-group">
         <label>Worker Name {userInput}</label>
-        <input type="text" className="form-control" share />
+        <input onChange={(e) => setWorkerName(e.target.value)} type="text" className="form-control" share />
       </div>
       <div className="form-group">
         <label>Email address</label>
-        <input type="email" className="form-control" />
+        <input onChange={(e) => setWorkerEmail(e.target.value)} type="email" className="form-control" />
       </div>
       <div className="form-group">
         <label>Message</label>

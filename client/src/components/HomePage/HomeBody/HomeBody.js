@@ -10,7 +10,6 @@ const HomeBody = () => {
     <div className="home-body">
       
       <HomeDate />
-      <Clock />
       <StartShift />
     </div>
   );

@@ -11,7 +11,6 @@ import { Avatar } from "@mui/material";
 const HomeNav = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
   const { userInput, setUserInput } = useContext(MyContext);
-  console.log(userInput);
 
 
 
