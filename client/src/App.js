@@ -8,13 +8,15 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import UserLoginPage from "./components/UserLoginPage/UserLoginPage";
 import Footer from "./components/UserLoginPage/Footer/Footer";
 import MyContext from "./MyContext";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import NotFound from "./components/HomePage/HomePageNavPages/NotFound/NotFound";
 
 function App() {
 
   const {userInput, setUserInput} = useState("");
   console.log(userInput)
+  // const { userInput, setUserInput} = useContext(MyContext);
+  
   const [startShift, setStartShift] = useState("");
 
 

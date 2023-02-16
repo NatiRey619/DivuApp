@@ -38,7 +38,7 @@ export const deleteUserController = async (req, res) => {
     res.status(200).send(deletetUser);
   } catch (e) {
     console.log(e);
-    res.status(500).send({ message: e });
+    res.status(500).send({ message: e  +`NO USER with this ID`});
   }
 };
 export const getOneUserController = async (req, res) => {
@@ -46,12 +46,12 @@ export const getOneUserController = async (req, res) => {
     const { id } = req.params;
     const user = await getOneUser(id);
     if (!user) {
-      res.status(404).send({ message: "no such todo with the specified id" });
+      res.status(404).send({ message: "NO USER with this ID" });
     }
     res.status(200).send(user);
   } catch (e) {
     console.log(e);
-    res.status(500).send({ message: e });
+    res.status(500).send({ message: e + `NO USER with this ID` } );
   }
 };
 

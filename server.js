@@ -11,13 +11,13 @@ import {
   getOneUserController,
 } from "./controllers/UserControllers.js";
 
-import {
-  getAllReportsController,
-  getOneReportsController, // צריך לטפל בזה
-  addReportsController,
-  deleteReportsController,
-  updateReportsController
-} from "./controllers/ReportsControllers.js";
+// import {
+//   getAllReportsController,
+//   getOneReportsController, // צריך לטפל בזה
+//   addReportsController,
+//   deleteReportsController,
+//   updateReportsController
+// } from "./controllers/ReportsControllers.js";
 
 dotenv.config();
 
@@ -41,11 +41,11 @@ app.put("/api/users/updateUser/:id", updateUserController);
 app.delete("/api/users/deleteUser/:id", deleteUserController);
 
 //routes for Reports
-app.get("/api/reports/getAllReports", getAllReportsController);
-app.get("/api/reports/getOneReport/:id", getOneReportsController);
-app.post("/api/reports/addReport", addReportsController);
-app.put("/api/reports/updateReport/:id", updateReportsController);
-app.delete("/api/reports/deleteReport/:id", deleteReportsController);
+// app.get("/api/reports/getAllReports", getAllReportsController);
+// app.get("/api/reports/getOneReport/:id", getOneReportsController);
+// app.post("/api/reports/addReport", addReportsController);
+// app.put("/api/reports/updateReport/:id", updateReportsController);
+// app.delete("/api/reports/deleteReport/:id", deleteReportsController);
 
 
 

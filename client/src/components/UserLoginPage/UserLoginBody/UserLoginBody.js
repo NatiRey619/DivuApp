@@ -14,15 +14,16 @@ const UserLoginBody = () => {
   const [userList, setUserList] = useState([]);
   const [passInput, setPassInput] = useState();
   const [userInput, setUserInput] = useState();
-  // const {userInput, setUserInput} = useContext(MyContext);
-
-
   const loginCheck = (username, pass) =>
+  // need to add redirect for admin users
     userList.map((user) => {
-      if (user.Password === Number(pass) && user.UserName === username) {
-        navigate(`/homepage:${pass}`);
+      console.log(user)
+      if (user.password === (pass) && user.userName === username) {
+        // navigate(`/homepage/${pass}`);
+        navigate(`/homepage`);
+
       } else {
-        setError("Failed, please try agein");
+        setError("Failed, please try again");
       }
     });
     
@@ -77,7 +78,9 @@ const UserLoginBody = () => {
         <input className="checkbox" type="checkbox" />
         <label>Remember me</label>
       </div>
-
+      <p className="admin-btn" onClick={() => navigate("/adminpage")}>
+        Login as administrator
+      </p>
       <button
         onClick={() => {
           loginCheck(userInput, passInput);
@@ -85,6 +88,8 @@ const UserLoginBody = () => {
         className="button-6">
         Login
       </button>
+
+      
     </div>
   ) 
 };
