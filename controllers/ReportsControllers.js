@@ -2,8 +2,9 @@ import {
   getAllReports,
   getOneReport, // צריך לטפל בזה
   addReport,
-  deleteReport,
+  deleteUser,
 } from "../services/ReportsServices";
+
 import { ReportsAllowedUpdates } from "../data/data.js";
 
 export const getAllReportsController = async (req, res) => {

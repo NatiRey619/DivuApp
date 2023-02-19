@@ -1,0 +1,9 @@
+*{
+    transition: all 0.6s;
+}
+
+.not-found{
+ 
+        display: table-cell;
+        vertical-align: middle;
+  }

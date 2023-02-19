@@ -3,6 +3,13 @@
     display: flex;
     flex-direction: column;
 }
+.worker-shifts p{
+
+text-align: center;
+}
+
+
+
 
 .start-shift button{
     color: #E6DDC4;

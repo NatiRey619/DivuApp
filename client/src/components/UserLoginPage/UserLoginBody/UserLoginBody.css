@@ -9,16 +9,13 @@
 }
 
 
-.user-login-body > h1{
-    font-size: 4rem;
-    margin: 3%;
-}
-.input-id-field{
+
+.input-field{
     width: 100%;
     text-align: center;
 
 }
-.input-id-field > input{
+.input-field > input{
     padding-bottom: 3%;
     padding-top: 3%;
     width: 90%;
@@ -26,38 +23,7 @@
     border-top-right-radius: 100px;
 
 }
-.helper-text-input, .hidden{
-    margin: 0;
-    font-size: smaller;
 
-}
-.hidden{
-    visibility: hidden;
-
-}
-.admin-btn {
-    margin: 0;
-    font-size: 0.9rem;
-    transition: all 250ms;
-    cursor:pointer
-
-}
-
-.admin-btn:hover {
-    background-color: #E6DDC4;
-    color: #181D31;
-    transform: translateY(-1px);
-    font-size: 1rem;
-
-}
-
-.admin-btn:active {
-    background-color: #F0F0F1;
-    border-color: rgba(0, 0, 0, 0.15);
-    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-    color: rgba(0, 0, 0, 0.65);
-    transform: translateY(0);
-  }
 
 .remember-me-checkbox
     input[type=checkbox] {
@@ -65,3 +31,8 @@
       }
     
 
+.user-login-body >h3{
+    font-size: 1.7rem;
+    letter-spacing: 0.4rem;
+    font-family:monospace;
+}

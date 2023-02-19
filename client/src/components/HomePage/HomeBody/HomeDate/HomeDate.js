@@ -1,5 +1,6 @@
 import React from "react";
 import "./HomeDate.css";
+import HomeClock from "../HomeClock/HomeClock";
 
 const HomeDate = () => {
   const current = new Date();
@@ -18,6 +19,7 @@ const HomeDate = () => {
     <div className="home-date">
       <h1>Today date : {date}</h1>
       <h1>Current day : {dayOfWeekName}</h1>
+      < HomeClock />
     </div>
   );
 };

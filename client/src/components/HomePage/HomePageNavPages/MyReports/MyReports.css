@@ -1,3 +1,11 @@
 .my-reports{
-    color:#F0E9D2;
+        min-width: 100%;
+        min-height:100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: #181D31;
+    
 }
