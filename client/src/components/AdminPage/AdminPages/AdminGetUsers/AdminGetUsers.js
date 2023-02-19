@@ -1,21 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AdminGetUsers.css"
 
 
 
 const AdminGetUsers = () => {
   const [allUsers, setAllUsers] = useState("");
+  const [isEmpty, setIsEmpty] = ("")
+  const [userId, setUserId] = useState("")
 
-  const [userId, setUserId] = useState()
 
 
-  function DeleteUser() {
-    fetch(`http://localhost:8000/api/users/deleteUser/${userId}` +   {
 
-      method: 'DELETE',
-      headers: {
-        "Content-type": "application/json"
-      }      // body: JSON.stringify(jsonData) // body data type must match "Content-Type" header
+
+  // const isPassBiggerThenFive = (text) =>
+  // text.length < 5
+  //   ? setIsEmpty("The Password must contain at least five digits")
+  //   : setIsEmpty("");
+
+
+  function DeleteUser(e) {
+    setUserId(e.target.id)
+    console.log(userId)
+    fetch(`http://localhost:8000/api/users/deleteUser/${userId}`+   {
+
+    method: 'DELETE', 
+        mode: 'cors', 
+        // body: JSON.stringify(jsonData) // body data type must match "Content-Type" header
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },   // body: JSON.stringify(jsonData) // body data type must match "Content-Type" header
 
 
     })
@@ -39,6 +53,10 @@ const AdminGetUsers = () => {
     }
   };
 
+
+
+
+
   return (
 
       <div className="get-all-users">
@@ -50,13 +68,14 @@ const AdminGetUsers = () => {
         {allUsers
           ? allUsers.map((user, index) => (
               <div key={index} className="worker-details">
-                <p onClick={(e) => setUserId(e.target.innerText)}>{user._id}</p>
+                <p>{user._id}</p>
                 <p>{user.firstName}</p>
                 <p>{user.lastName}</p>
                 <p>{user.userName}</p>
                 <p>{user.isAdmin}</p>
                 <p>{user.password}</p>
                 <button id={user._id} onClick={DeleteUser}>Delete User</button>
+
               </div>
             ))
           : "Nothing to show..."}
