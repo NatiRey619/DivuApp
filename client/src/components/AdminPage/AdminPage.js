@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import "./AdminPage.css";
-import AdminGetUsers from "./AdminPages/AdminGetUsers";
-
+import AdminNewUser from "./AdminPages/AdminNewUser/AdminNewUser";
+import AdminGetUsers from "./AdminPages/AdminGetUsers/AdminGetUsers";
 const AdminPage = () => {
+  
   // useEffect(() => {
   //   getAllUsers();
   // }, []);
 
   return (
-    <div>
-      <h1>admin page</h1>
+    <div className="admin-page">
+      <h1>Admin Page</h1>
       <AdminGetUsers />
+      <br></br>
+      <AdminNewUser />
     </div>
   );
 };
