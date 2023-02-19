@@ -33,7 +33,7 @@ export const deleteUserController = async (req, res) => {
     const { id } = req.params;
     const deletetUser = await deleteUser(id);
     if (!deletetUser) {
-      res.status(404).send({ message: "no such todo with the specified id" });
+      res.status(404).send({ message: "no such User with the specified id" });
     }
     res.status(200).send(deletetUser);
   } catch (e) {

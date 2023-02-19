@@ -26,7 +26,7 @@ const AdminNewUser = () => {
       ]
     }
   
-    function handleClick() {
+    function AddNewUser() {
       // Send data to the backend via POST
       fetch('http://localhost:8000/api/users/addUser/', {  // Enter your IP address here
         method: 'POST', 
@@ -85,7 +85,7 @@ const AdminNewUser = () => {
         <label>is Admin ?</label>
 
 
-  <button onClick={handleClick}>Add New User</button>
+  <button onClick={AddNewUser}>Add New User</button>
 
   </div>
 

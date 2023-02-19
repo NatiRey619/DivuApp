@@ -1,4 +1,13 @@
 .get-all-users{
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.get-all-users p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
