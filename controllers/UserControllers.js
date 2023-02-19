@@ -38,7 +38,7 @@ export const deleteUserController = async (req, res) => {
     res.status(200).send(deletetUser);
   } catch (e) {
     console.log(e);
-    res.status(500).send({ message: e  +`NO USER with this ID`});
+    res.status(500).send({ message: e + `NO USER with this ID` });
   }
 };
 export const getOneUserController = async (req, res) => {
@@ -51,7 +51,7 @@ export const getOneUserController = async (req, res) => {
     res.status(200).send(user);
   } catch (e) {
     console.log(e);
-    res.status(500).send({ message: e + `NO USER with this ID` } );
+    res.status(500).send({ message: e + `NO USER with this ID` });
   }
 };
 
