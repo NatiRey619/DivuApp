@@ -48,9 +48,6 @@ app.delete("/api/users/deleteUser/:id", deleteUserController);
 // app.delete("/api/reports/deleteReport/:id", deleteReportsController);
 
 
-
-
-
 mongoose.connect(
   `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`,
   {
