@@ -7,9 +7,8 @@ const StartShift = () => {
   const [endShift, setEndShift] = useState("");
   const [startShiftClicked, setstartShiftClicked] = useState(true);
   const [formatShifts, setformatShifts] = useState("");
-
-
-
+  const [data, setData] = useState({});
+  console.log(data);
 
   const current = new Date();
   const date = `${current.getDate()}/${
@@ -20,8 +19,8 @@ const StartShift = () => {
 
   function giveStartShift() {
     setStartShift(new Date().toLocaleTimeString());
-    setstartShiftClicked(false)
-    console.log(startShiftClicked)
+    setstartShiftClicked(false);
+    console.log(startShiftClicked);
     const workerStartShift = {
       ID: "ID HERE",
       StartShift: { startShift, date },
@@ -38,26 +37,39 @@ const StartShift = () => {
     console.log(workerEndShift);
   }
 
-  function giveEndShift() {
-    setEndShift(new Date().toLocaleTimeString());
-    const workerEndShift = {
-      ID: "ID HERE",
-      EndShift: { endShift, date },
-    };
-    console.log(workerEndShift);
-  }
-
   function formatShiftsTimes() {
     setEndShift();
-    setStartShift()
-    console.log(endShift)
-    console.log(startShift)
-
-  
+    setStartShift();
+    console.log(endShift);
+    console.log(startShift);
   }
+  var jsonData = {
+    NewReport: [
+      {
+        startShift: startShift,
+        endShift: endShift,
+      },
+    ],
+  };
 
-
-
+  function addNewReport() {
+    // Send data to the backend via POST
+    fetch("http://localhost:8000/api/reports/addReport/", {
+      // Enter your IP address here
+      method: "POST",
+      mode: "cors",
+      // body: JSON.stringify(jsonData) // body data type must match "Content-Type" header
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        StartShift: startShift,
+        EndShift: endShift,
+      }),
+    });
+    console.log(jsonData);
+  }
 
   //js logic
   return (
@@ -69,10 +81,15 @@ const StartShift = () => {
       </div>
 
       <div className="end-shift">
-        <button disabled={startShiftClicked} onClick={giveEndShift}>סיים משמרת</button>
+        <button disabled={startShiftClicked} onClick={giveEndShift}>
+          סיים משמרת
+        </button>
         <p>{endShift}</p>
-        
-       <button onClick={formatShiftsTimes}>אפס שעון יומי</button>
+
+        <div className="action-buttons">
+          <button onClick={formatShiftsTimes}>אפס שעון יומי</button>
+          <button onClick={addNewReport}>שלח דוח שעות יומי</button>
+        </div>
       </div>
     </div>
   );

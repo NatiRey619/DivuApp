@@ -48,16 +48,9 @@ const AdminGetUsers = () => {
       {allUsers
         ? allUsers.map((user, index) => (
             <div key={index} className="worker-details">
-              <tr>
-                User ID :<th>{user._id}</th>{" "}
-                <label>
-                  First Name :<th>{user.firstName}</th>{" "}
-                </label>
-                <label>
-                  Last Name :<th>{user.firstName}</th>{" "}
-                </label>
-              </tr>
-
+              <p>{user._id}</p>
+              <p>{user.firstName}</p>
+              <p>{user.firstName}</p>
               <p>{user.firstName}</p>
               <p>{user.lastName}</p>
               <p>{user.userName}</p>

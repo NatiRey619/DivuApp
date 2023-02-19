@@ -15,23 +15,18 @@ const UserLoginBody = () => {
   const [userList, setUserList] = useState([]);
   const [passInput, setPassInput] = useState();
   const [userInput, setUserInput] = useState();
-  
+
   const loginCheck = (username, pass) =>
-  // need to add redirect for admin users
+    // need to add redirect for admin users
     userList.map((user) => {
-      console.log(user)
-      if (user.password === (pass) && user.userName === username) {
+      console.log(user);
+      if (user.password === pass && user.userName === username) {
         // navigate(`/homepage/${pass}`);
         navigate(`/homepage`);
-
       } else {
         setError("Failed, please try again");
       }
     });
-
-
-    
-    
 
   const isPassBiggerThenFive = (pass) =>
     pass.length < 5
@@ -54,8 +49,7 @@ const UserLoginBody = () => {
     getAllUsers();
   }, []);
 
-
-  return  (
+  return (
     <div className="user-login-body">
       <h3>WELCOME TO DIVUAPP</h3>
       <div className="input-field">
@@ -83,21 +77,18 @@ const UserLoginBody = () => {
         <input className="checkbox" type="checkbox" />
         <label>Remember me</label>
       </div>
-    
+
       <button
         onClick={() => {
-
           loginCheck(userInput, passInput);
         }}
-        className="button-6">
+        className="button-6"
+      >
         Login
       </button>
-
-      
     </div>
-  ) 
+  );
 };
-
 
 //   return !isLoading ? (
 //     <div className="user-login-body">
