@@ -11,16 +11,17 @@ const ReportsSchema = new mongoose.Schema({
     default: Date.now(),
   },
   StartShift: {
-    type:Date,
+    type:String,
     default: null,
   },
   EndShift: {
-    type:Date,
+    type:String,
     default: null,
   },
   userName: {
     type: String,
-    required: true,
+    default: null,
+
   },
 
   

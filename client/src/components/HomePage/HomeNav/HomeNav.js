@@ -24,16 +24,15 @@ const HomeNav = () => {
 
   return (
     
-<div class="navbar">
-<p><Avatar>H</Avatar></p>
-  <p>
- welcome back {userInput}</p>
+<div className="navbar">
+<span><Avatar>H</Avatar></span>
+  <p>welcome back {userInput}</p>
  
 
 <a className="nav-page" onClick={() => navigate("/*")}>NEW PAGE</a>
 <a className="nav-page" onClick={() => navigate("/*")}>NEW PAGE</a>
-  <div class="dropdown">
-    <button class="dropbtn">My Profile 
+  <div className="dropdown">
+    <button className="dropbtn">My Profile 
     </button>
     <div className="dropdown-content">
 
