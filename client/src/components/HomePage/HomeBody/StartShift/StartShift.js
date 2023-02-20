@@ -8,7 +8,7 @@ const StartShift = () => {
   const [startShiftClicked, setstartShiftClicked] = useState(true);
   const [formatShifts, setformatShifts] = useState("");
   const [data, setData] = useState({});
-  console.log(data);
+  const [error, setError] = useState("")
 
   const current = new Date();
   const date = `${current.getDate()}/${
@@ -18,17 +18,30 @@ const StartShift = () => {
   // use state is condition for true fase
 
   function giveStartShift() {
-    setStartShift(new Date().toLocaleTimeString());
-    setstartShiftClicked(false);
-    console.log(startShiftClicked);
+    
     const workerStartShift = {
       ID: "ID HERE",
       StartShift: { startShift, date },
     };
-    console.log(workerStartShift);
-  }
+
+    if (!startShift) {
+      setstartShiftClicked(false);
+      setStartShift(new Date().toLocaleTimeString());
+
+      console.log(startShiftClicked);
+      console.log(workerStartShift)
+
+    } else {
+      setError("עדכן סיום משמרת , או אפס במקרה הצורך ");
+
+    }
+ 
+    }
+
+
 
   function giveEndShift() {
+
     setEndShift(new Date().toLocaleTimeString());
     const workerEndShift = {
       ID: "ID HERE",
@@ -38,10 +51,14 @@ const StartShift = () => {
   }
 
   function formatShiftsTimes() {
+    
     setEndShift();
     setStartShift();
     console.log(endShift);
     console.log(startShift);
+    setError("");
+    setstartShiftClicked(true)
+
   }
   var jsonData = {
     NewReport: [
@@ -85,7 +102,7 @@ const StartShift = () => {
           סיים משמרת
         </button>
         <p>{endShift}</p>
-
+        {error && <p>{error}</p>}
         <div className="action-buttons">
           <button onClick={formatShiftsTimes}>אפס שעון יומי</button>
           <button onClick={addNewReport}>שלח דוח שעות יומי</button>
