@@ -1,14 +1,7 @@
 import mongoose from "mongoose";
 
 const ReportsSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
+
   isAdmin: {
     type: Boolean,
     default: false,
@@ -16,6 +9,14 @@ const ReportsSchema = new mongoose.Schema({
   dateCreated: {
     type: Date,
     default: Date.now(),
+  },
+  StartShift: {
+    type:Date,
+    default: null,
+  },
+  EndShift: {
+    type:Date,
+    default: null,
   },
   userName: {
     type: String,

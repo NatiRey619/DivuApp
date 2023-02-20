@@ -2,8 +2,8 @@ import {
   getAllReports,
   getOneReport, // צריך לטפל בזה
   addReport,
-  deleteUser,
-} from "../services/ReportsServices";
+  deleteOneReport,
+} from "../services/ReportsServices.js";
 
 import { ReportsAllowedUpdates } from "../data/data.js";
 
@@ -33,7 +33,7 @@ export const addReportsController = async (req, res) => {
 export const deleteReportsController = async (req, res) => {
   try {
     const { id } = req.params;
-    const deleteReport = await deleteReport(id);
+    const deleteReport = await deleteOneReport(id);
     if (!deleteReport) {
       res.status(404).send({ message: "no such report with the specified id" });
     }
@@ -73,7 +73,7 @@ export const updateReportsController = async (req, res) => {
     if (!report) {
       res.status(404).send({ message: "report does not exist" });
     }
-    reportUpdates.forEach((reportUpdates) => (user[reportUpdates] = req.body[reportUpdates]));
+    reportUpdates.forEach((reportUpdates) => (report[reportUpdates] = req.body[reportUpdates]));
     await report.save();
     res.status(200).send(report);
   } catch (e) {

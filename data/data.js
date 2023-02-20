@@ -15,3 +15,12 @@ export const ReportsAllowedUpdates = [
   
 ];
 
+export const MessagesAllowedUpdates = [
+  "workerName",
+  "email",
+  "innerMessage",
+  "userName"
+  
+];
+
+
