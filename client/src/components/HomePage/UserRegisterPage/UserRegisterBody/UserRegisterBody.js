@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import "./UserRegisterBody.css";
 
 const UserRegisterBody = () => {
     const [userName, setUserName] = useState("");
@@ -69,7 +70,14 @@ const UserRegisterBody = () => {
     console.log(jsonData);
   }
 
+
+
+
+
+
   return (
+
+  
     <div className="add-new-user">
       <h2>Create New User</h2>
       <label for="user-name">Enter User Name</label>
@@ -146,7 +154,7 @@ const UserRegisterBody = () => {
       </div> */}
 
      
-      <button onClick={AddNewUser}>Add New User</button>
+      <button className='register-button' onClick={AddNewUser}>Add New User</button>
     </div>
   );
 };

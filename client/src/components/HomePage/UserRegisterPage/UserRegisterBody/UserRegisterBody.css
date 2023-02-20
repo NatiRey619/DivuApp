@@ -1,0 +1,12 @@
+.add-new-user{
+    display: flex;
+    align-items: center;
+    background-color: #678983;
+    
+
+
+}
+
+.register-button{
+    margin: 20px;
+}

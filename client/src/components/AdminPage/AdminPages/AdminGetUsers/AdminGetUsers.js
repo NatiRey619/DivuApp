@@ -48,14 +48,26 @@ const AdminGetUsers = () => {
       {allUsers
         ? allUsers.map((user, index) => (
             <div key={index} className="worker-details">
-              <p>{user._id}</p>
-              <p>{user.firstName}</p>
-              <p>{user.firstName}</p>
-              <p>{user.firstName}</p>
-              <p>{user.lastName}</p>
-              <p>{user.userName}</p>
-              <p>{user.isAdmin}</p>
-              <p>{user.password}</p>
+              <table >
+  <tr>
+    <th>User ID</th>
+    <th>FirstName</th>
+    <th>LastName</th>
+    <th>UserName</th>
+    <th>Password</th>
+
+
+  </tr>
+  <tr>
+    <td>{user._id}</td>
+    <td>{user.firstName}</td>
+    <td>{user.lastName}</td>
+    <td>{user.userName}</td>
+    <td>{user.password}</td>
+  </tr>
+
+</table>
+             
               <button onClick={() => DeleteUser(user._id)}>Delete User</button>
             </div>
           ))

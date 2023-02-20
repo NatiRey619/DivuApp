@@ -1,5 +1,6 @@
 import React from 'react'
 import UserRegisterBody from '../UserRegisterBody/UserRegisterBody';
+import "./UserRegisterPage.css"
 
 const UserRegisterPage = () => {
   return (
