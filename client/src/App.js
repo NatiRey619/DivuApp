@@ -11,7 +11,7 @@ import MyContext from "./MyContext";
 import { useContext, useState } from "react";
 import NotFound from "./components/HomePage/HomePageNavPages/NotFound/NotFound";
 import AdminPage from "./components/AdminPage/AdminPage";
-
+import UserRegisterPage from "./components/HomePage/UserRegisterPage/UserRegisterPage/UserRegisterPage";
 function App() {
   
 
@@ -28,6 +28,7 @@ function App() {
             <Route path="/logout" element={<LogOut />} />
             <Route path="/pmmanager" element={<PmManger />} />
             <Route path="/adminpage" element={<AdminPage />} />
+            <Route path="/register" element={<UserRegisterPage />} />
 
             <Route path="*" element={<NotFound />} />
 

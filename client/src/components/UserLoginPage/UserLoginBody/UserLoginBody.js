@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./UserLoginBody.css";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../Loading/Loading";
+import UserRegisterBody from "../../HomePage/UserRegisterPage/UserRegisterBody/UserRegisterBody";
 
 const UserLoginBody = () => {
   const navigate = useNavigate();
@@ -25,6 +26,11 @@ const UserLoginBody = () => {
         setError("Failed, please try again");
       }
     });
+
+    const registerRoute = () =>{ 
+      let path = `/register`; 
+      navigate(path);
+    }
 
   const isPassBiggerThenFive = (pass) =>
     pass.length < 5
@@ -117,7 +123,7 @@ const UserLoginBody = () => {
         <input className="checkbox" type="checkbox" />
         <label>Remember me</label>
       </div>
-
+      <p onClick={registerRoute}>register</p>
       <button
         onClick={() => {
           loginCheck(userInput, passInput);
@@ -125,6 +131,7 @@ const UserLoginBody = () => {
         className="button-6">
         Login
       </button>
+      
     </div>
   ) : (
     <Loading />
