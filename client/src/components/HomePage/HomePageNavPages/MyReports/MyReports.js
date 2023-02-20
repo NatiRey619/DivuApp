@@ -1,25 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MyReports.css";
 import StartShift from "../../HomeBody/StartShift/StartShift";
 import { useNavigate } from "react-router-dom";
-import MyContext from "../../../../MyContext";
-import { useContext } from "react";
 const MyReports = () => {
   const navigate = useNavigate();
-  const { StartShift, setStartShift } = useContext(MyContext);
+  const [allReports, setAllReports] = useState("")
 
-  
-  console.log(StartShift)
-  return (
+
+
+  const getAllReports = async () => {
+    try {
+      const respone = await fetch(
+        "http://localhost:8000/api/reports/getAllReports"
+      );
+      const data = await respone.json();
+      setAllReports(data);
+
+      console.log(allReports);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+    return (
     <div className="my-reports">
                   <button onClick={() => navigate(-1)}>Go back</button>
-                 <h3>{StartShift}</h3> 
 
       <h1>My Reports</h1>
+      <button onClick={getAllReports}>pull reports</button>
+      {allReports
+        ? allReports.map((report) => (
+            <div className="report-details">
+               <p>Report ID : {report._id}</p>
 
+              <p>Start : {report.StartShift}</p>
+              <p>End : {report.EndShift}</p>
+              <p>Date : {report.dateCreated}</p>
+              <p>User : need to connect users{report.userName}</p>
+
+
+
+            </div>
+          ))
+        : "Press to load..."}
+    </div>
       
 
-    </div>
   );
 };
 
