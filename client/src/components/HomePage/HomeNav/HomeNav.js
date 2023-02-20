@@ -12,8 +12,9 @@ const HomeNav = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
   // const { userInput, setUserInput } = useContext(MyContext);
   const [userInput, setUserInput] = useState('')
-  const [isAdmin, setIsAdmin] = useState(false)
-  console.log(isAdmin)
+
+  const [isAdmin, setIsAdmin] = useState(false) // need to get isAdmin from login page 
+  //to change option to see admin menu
     
 
 
@@ -36,11 +37,14 @@ const HomeNav = () => {
     </button>
     <div className="dropdown-content">
 
-{ isAdmin 
-    ?       <a className="nav-page" onClick={() => navigate("/adminpage")}>Admin Panel</a>
+
+
+
+{/* { isAdmin 
+    ?       <a className="nav-page" onClick={() => navigate("/adminpage")}>Admin Panel</a> 
 
     : null
-}
+} */}
 
 <a className="nav-page" onClick={() => navigate("/adminpage")}>Admin Panel</a>
     <a className="nav-page" onClick={() => navigate("/MyReports")}>My Reports</a>

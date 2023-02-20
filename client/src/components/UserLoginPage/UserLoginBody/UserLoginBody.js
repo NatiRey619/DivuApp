@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./UserLoginBody.css";
 import { useNavigate } from "react-router-dom";
-import MyContext from "../../../MyContext";
-import { useContext } from "react";
 import Loading from "../../../Loading/Loading";
 
 const UserLoginBody = () => {
@@ -40,6 +38,7 @@ const UserLoginBody = () => {
       );
       const data = await respone.json();
       setUserList(data);
+      setIsLoading(false)
     } catch (e) {
       console.log(e);
     }
@@ -49,48 +48,7 @@ const UserLoginBody = () => {
     getAllUsers();
   }, []);
 
-  return (
-    <div className="user-login-body">
-      <h3>WELCOME TO DIVUAPP</h3>
-      <div className="input-field">
-        <input
-          onChange={(e) => {
-            setUserInput(e.target.value);
-          }}
-          type="text"
-          placeholder="Please enter your User name"
-        />
-        <input
-          onChange={(e) => {
-            isPassBiggerThenFive(e.target.value);
-            setPassInput(e.target.value);
-          }}
-          type="number"
-          placeholder="Please enter your Password"
-        />
-        {/* <p className={!passFiveDigits ? "helper-text-input" : "hidden"}>
-          The Password must contain at least five digits
-        </p> */}
-        {error && <p>{error}</p>}
-      </div>
-      <div className="remember-me-checkbox">
-        <input className="checkbox" type="checkbox" />
-        <label>Remember me</label>
-      </div>
-
-      <button
-        onClick={() => {
-          loginCheck(userInput, passInput);
-        }}
-        className="button-6"
-      >
-        Login
-      </button>
-    </div>
-  );
-};
-
-//   return !isLoading ? (
+//   return (
 //     <div className="user-login-body">
 //       <h3>WELCOME TO DIVUAPP</h3>
 //       <div className="input-field">
@@ -123,13 +81,54 @@ const UserLoginBody = () => {
 //         onClick={() => {
 //           loginCheck(userInput, passInput);
 //         }}
-//         className="button-6">
+//         className="button-6"
+//       >
 //         Login
 //       </button>
 //     </div>
-//   ) : (
-//     <Loading />
 //   );
 // };
+
+  return ! isLoading ? (
+    <div className="user-login-body">
+      <h3>WELCOME TO DIVUAPP</h3>
+      <div className="input-field">
+        <input
+          onChange={(e) => {
+            setUserInput(e.target.value);
+          }}
+          type="text"
+          placeholder="Please enter your User name"
+        />
+        <input
+          onChange={(e) => {
+            isPassBiggerThenFive(e.target.value);
+            setPassInput(e.target.value);
+          }}
+          type="text"
+          placeholder="Please enter your Password"
+        />
+        {/* <p className={!passFiveDigits ? "helper-text-input" : "hidden"}>
+          The Password must contain at least five digits
+        </p> */}
+        {error && <p>{error}</p>}
+      </div>
+      <div className="remember-me-checkbox">
+        <input className="checkbox" type="checkbox" />
+        <label>Remember me</label>
+      </div>
+
+      <button
+        onClick={() => {
+          loginCheck(userInput, passInput);
+        }}
+        className="button-6">
+        Login
+      </button>
+    </div>
+  ) : (
+    <Loading />
+  );
+};
 
 export default UserLoginBody;

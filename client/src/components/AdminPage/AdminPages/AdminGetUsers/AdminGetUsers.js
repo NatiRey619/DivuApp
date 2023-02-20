@@ -56,21 +56,6 @@ const AdminGetUsers = () => {
               <p>{user.userName}</p>
               <p>{user.isAdmin}</p>
               <p>{user.password}</p>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <button>Modify User</button> // where you'll put the edit
-                    button
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* iterate through the customers array and render a unique Customer component for each customer object in the array */}
-                  {/* { customers.map(customer => <Customer key={customer.id} customer={customer} />) } */}
-                </tbody>
-              </table>
               <button onClick={() => DeleteUser(user._id)}>Delete User</button>
             </div>
           ))

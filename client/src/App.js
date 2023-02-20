@@ -13,18 +13,13 @@ import NotFound from "./components/HomePage/HomePageNavPages/NotFound/NotFound";
 import AdminPage from "./components/AdminPage/AdminPage";
 
 function App() {
-
-  const {userInput, setUserInput} = useState("");
-  console.log(userInput)
-  // const { userInput, setUserInput} = useContext(MyContext);
   
-  const [startShift, setStartShift] = useState("");
 
 
 
   return (
     <BrowserRouter>
-      <MyContext.Provider value={{ userInput, setUserInput, startShift, setStartShift }}>
+      <MyContext.Provider value={{}}>
         <div className="main">
           <Routes>
             <Route path="/" element={<UserLoginPage />} />
@@ -41,7 +36,6 @@ function App() {
       </MyContext.Provider>
     </BrowserRouter>
 
-    //sadsadad
   );
   
 }

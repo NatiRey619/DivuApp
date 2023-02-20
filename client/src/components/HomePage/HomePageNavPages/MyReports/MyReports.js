@@ -36,7 +36,7 @@ const MyReports = () => {
               <p>Start : {report.StartShift}</p>
               <p>End : {report.EndShift}</p>
               <p>Date : {report.dateCreated}</p>
-              <p>User : need to connect users{report.userName}</p>
+              <p>User : need to connect users{report.user}</p>
 
 
 

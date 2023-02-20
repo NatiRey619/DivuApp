@@ -19,13 +19,15 @@ const ReportsSchema = new mongoose.Schema({
     default: null,
   },
   userName: {
-    type: String,
-    default: null,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
+   },
 
   },
 
   
-});
+);
 
 // model related to the specific schema
 export const ReportsModel = mongoose.model("Reports", ReportsSchema);

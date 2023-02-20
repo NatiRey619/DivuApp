@@ -10,6 +10,7 @@ const AdminNewUser = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [PassFiveDigitsError, setPassFiveDigitsError] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [error, setError] = useState ("")
 
   // const [meter, setMeter] = useState(false);
 
@@ -43,7 +44,7 @@ const AdminNewUser = () => {
 
   const isEmptyText = (text) =>
     text.length < 5
-      ? setPassFiveDigitsError("The field must contain at least 5 letters")
+      ? setPassFiveDigitsError(`All fields must contain at least 5 letters`)
       : setPassFiveDigitsError("");
 
   function AddNewUser() {
@@ -76,38 +77,45 @@ const AdminNewUser = () => {
       <input
         onChange={(e) => {
           setUserName(e.target.value);
+          isEmptyText(userName)
         }}
         name="user-name-val"
         id="user-name"
         type="text"
       />
 
+
       <label for="first-name">Enter first name</label>
       <input
         onChange={(e) => {
           setFirstName(e.target.value);
-          isEmptyText(firstName);
+          isEmptyText(firstName)
         }}
         name="first-name-val"
         id="first-name"
         type="text"
-      />
+      /> 
+          
+
 
       <label for="last-name">Enter last name</label>
       <input
         onChange={(e) => {
           setLastName(e.target.value);
-          isEmptyText(lastName);
+          isEmptyText(lastName)
+
         }}
         name="last-name-val"
         id="last-name"
         type="text"
       />
-      {PassFiveDigitsError}
+      
       <label for="worker-email">Enter Email</label>
       <input
         onChange={(e) => {
           setUserEmail(e.target.value);
+          isEmptyText(userEmail)
+
         }}
         name="worker-email-val"
         id="worker-email"
@@ -118,12 +126,14 @@ const AdminNewUser = () => {
       <input
         onChange={(e) => {
           setUserPassword(e.target.value);
-          isEmptyText(userPassword);
+          isEmptyText(userPassword)
+
         }}
         name="worker-password-val"
         id="worker-password"
         type="text"
-      />
+      />   
+
       {/* <div>
         <div className="password-strength-meter"></div>
         <div>
@@ -144,7 +154,7 @@ const AdminNewUser = () => {
         type="checkbox"
       />
       <label>is Admin ?</label>
-
+      {PassFiveDigitsError}
       <button onClick={AddNewUser}>Add New User</button>
     </div>
   );
