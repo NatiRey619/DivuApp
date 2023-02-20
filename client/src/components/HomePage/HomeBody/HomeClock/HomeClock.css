@@ -1,5 +1,17 @@
 .clock {
     display: flex;
     justify-content: center;
-    font-style: unset;    
+    font-style: unset;   
+    color: #181D31; 
 }
+html,body {
+	background: black;
+	margin: 0;
+	overflow: hidden;
+}
+h1{
+    background: #F0E9D2;
+    padding: 5px 15px;
+    border-radius: 6px; 
+    min-width: 115px
+    }
