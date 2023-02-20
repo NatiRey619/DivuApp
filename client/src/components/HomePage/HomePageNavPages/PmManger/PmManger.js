@@ -1,8 +1,6 @@
 import React from "react";
 import "./PmManager.css";
 import { useState } from "react";
-import MyContext from "../../../../MyContext";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 const PmManger = () => {
@@ -13,9 +11,40 @@ const PmManger = () => {
    const [messageTime, setMessageTime] = useState("")
    const [fullWorkerMessage, setFullWorkerMessage] = useState("")
 
+   var jsonData = {
+    newMessage: [
+      {
+        workerName: workerName,
+        email: workerEmail,
+        innerMessage: postContent,
+        userName: workerName,
+
+      },
+    ],
+  };
 
 
-   const { userInput, setUserInput } = useContext(MyContext);
+   function AddNewMessage() {
+    // Send data to the backend via POST
+    fetch("http://localhost:8000/api/messages/addMessage", {
+      // Enter your IP address here
+      method: "POST",
+      mode: "cors",
+      // body: JSON.stringify(jsonData) // body data type must match "Content-Type" header
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        workerName: workerName,
+        email: workerEmail,
+        innerMessage: postContent,
+        userName: workerName,
+      }),
+    });
+    console.log(jsonData);
+  }
+
   const navigate = useNavigate()
    
 
@@ -61,7 +90,7 @@ const PmManger = () => {
       <h1>Send Private Message To Manager</h1>
       {/* <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST"> */}
       <div className="form-group">
-        <label>Worker Name {userInput}</label>
+        <label>Worker Name</label>
         <input onChange={(e) => setWorkerName(e.target.value)} type="text" className="form-control" share />
       </div>
       <div className="form-group">
@@ -81,7 +110,8 @@ const PmManger = () => {
       </div>
        <p>{isEmptyContent}</p>
 
-      <button onClick={sendPmMessage} type="submit">
+      <button onClick={AddNewMessage} AddNewMessage
+       type="submit">
         Submit Request
       </button>
       {/* </form> */}
