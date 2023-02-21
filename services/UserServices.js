@@ -1,5 +1,6 @@
 import { UserModel } from "../models/UserModel.js";
 
+
 export const getAllUsers = () => {
   return UserModel.find({});
 };

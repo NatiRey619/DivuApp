@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+
 import {
   getAllUsersController,
   addUserController,
@@ -33,6 +34,8 @@ const { PORT, DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
 
 //the initialising of the server itself
 const app = express();
+// const {Users} = require ("./models")
+// const bcrypt = require('bcrypt');
 
 // middlewares for the server
 app.use(express.json());
@@ -40,6 +43,27 @@ app.use(cors());
 // app.use(express.static("client/build"));
 
 mongoose.set("strictQuery", true);
+
+
+// app.post("/register", (req, res) => {
+// const {userName, password} = req.body;
+// bcrypt.hash(password, 10 ).then((hash) => {
+//   Users.create({
+//     userName: userName,
+//     password: hash 
+//   }). then(() => {
+//     res.json('User Registered');
+//   }).catch((err)=>{
+//     if(err){
+//       res.status(400).json({error:err})
+//     }
+//   })
+
+// })
+
+
+// });
+
 
 //routes for users
 app.get("/api/users/getAllUsers", getAllUsersController);

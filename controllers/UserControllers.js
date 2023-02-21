@@ -6,6 +6,8 @@ import {
 } from "../services/UserServices.js";
 import { uesrsAllowedUpdates } from "../data/data.js";
 
+
+
 export const getAllUsersController = async (req, res) => {
   try {
     const allUsers = await getAllUsers();
