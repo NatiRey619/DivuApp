@@ -6,7 +6,27 @@ import {
 } from "../services/UserServices.js";
 import { uesrsAllowedUpdates } from "../data/data.js";
 
+export const addUserAuthController = async (req, res) => {
+  const { username, password, email, lastname, firstname } = req.body;
 
+  bcrypt.hash(password, 10).then((hash) => {
+    UserModel.create({
+      userName: username,
+      password: hash,
+      firstName: firstname,
+      lastName: lastname,
+      email: email,
+    })
+      .then(() => {
+        res.json("User Registered");
+      })
+      .catch((err) => {
+        if (err) {
+          res.status(400).json({ error: err });
+        }
+      });
+  });
+};
 
 export const getAllUsersController = async (req, res) => {
   try {

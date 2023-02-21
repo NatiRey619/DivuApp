@@ -10,6 +10,7 @@ import {
   updateUserController,
   deleteUserController,
   getOneUserController,
+  addUserAuthController,
 } from "./controllers/UserControllers.js";
 
 import {
@@ -67,9 +68,20 @@ app.post("/api/users/register", (req, res) => {
   });
 });
 
+app.post("/api/users/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  const user = await UserModel.findOne({ userName: username });
+  if (!user) res.status(400).json({ error: "User doesnt exist" });
+
+  res.json("Logged In");
+});
+
 //user login check
 
 //routes for users
+app.post("/api/users/register", addUserAuthController);
+
 app.get("/api/users/getAllUsers", getAllUsersController);
 app.get("/api/users/getOneUser/:id", getOneUserController);
 app.post("/api/users/addUser", addUserController);

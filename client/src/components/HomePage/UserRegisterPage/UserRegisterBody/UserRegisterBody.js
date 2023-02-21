@@ -32,12 +32,11 @@ const UserRegisterBody = () => {
   var jsonData = {
     newUser: [
       {
-        userName: userName,
-        firstName: firstName,
-        lastName: lastName,
-        password: userPassword,
-        email: userEmail,
-        isAdmin: isAdmin,
+        userName: username,
+        password: hash,
+        firstName: firstname,
+        lastName: lastname,
+        email: email,
       },
     ],
   };
