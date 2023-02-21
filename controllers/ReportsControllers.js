@@ -5,6 +5,8 @@ import {
   deleteOneReport,
 } from "../services/ReportsServices.js";
 
+import { getOneUser } from "../services/UserServices.js";
+
 import { ReportsAllowedUpdates } from "../data/data.js";
 
 export const getAllReportsController = async (req, res) => {
@@ -22,8 +24,13 @@ export const getAllReportsController = async (req, res) => {
 export const addReportsController = async (req, res) => {
   try {
     const report = req.body;
+    const userId = req.body.userName
+    const existUser = await getOneUser(userId);
 
-    const newReport = await addReport({ ...report });
+    if(!existUser){
+      res.status(404).send({message:"there is no such user , cant create REPORT" + userId})
+    }
+    const newReport = await addReport({ ...report, userId });
     res.status(200).send(newReport);
   } catch (e) {
     console.log(e);

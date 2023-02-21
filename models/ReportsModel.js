@@ -2,22 +2,21 @@ import mongoose from "mongoose";
 
 const ReportsSchema = new mongoose.Schema({
 
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
   dateCreated: {
     type: Date,
     default: Date.now(),
   },
   StartShift: {
     type:String,
-    default: null,
+    default: 0,
+    required:true
+
   },
   EndShift: {
     type:String,
-    default: null,
-  },
+    default: 0,
+    required:true
+  }, 
   userName: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

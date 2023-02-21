@@ -1,11 +1,13 @@
 import { ReportsModel } from "../models/ReportsModel.js";
 
 export const getAllReports = () => {
-  return ReportsModel.find({});
+  // return ReportsModel.find({}).populate('userName'); // pulling User info into Reports
+  return ReportsModel.find({}).populate({path:"userName", select:"-password"}); // pulling User info into Reports without password
+
 };
 
-export const addReport = (reportObj) => {
-  const newReport = new ReportsModel({ ...reportObj });
+export const addReport = (reportObj, user) => {
+  const newReport = new ReportsModel({ ...reportObj, user });
   return newReport.save();
 };
 
