@@ -17,7 +17,7 @@ import {
   getOneReportsController, // צריך לטפל בזה
   addReportsController,
   deleteReportsController,
-  updateReportsController
+  updateReportsController,
 } from "./controllers/ReportsControllers.js";
 
 import {
@@ -25,8 +25,8 @@ import {
   addMessageController,
   deleteMessagsController,
   getOneMessageController,
-  updateMessageController
-} from "./controllers/MessagesControllers.js"
+  updateMessageController,
+} from "./controllers/MessagesControllers.js";
 
 dotenv.config();
 
@@ -34,36 +34,40 @@ const { PORT, DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
 
 //the initialising of the server itself
 const app = express();
-// const {Users} = require ("./models")
-// const bcrypt = require('bcrypt');
+
+import { UserModel } from "./models/UserModel.js";
+import bcrypt from "bcrypt";
 
 // middlewares for the server
 app.use(express.json());
+
 app.use(cors());
 // app.use(express.static("client/build"));
 
 mongoose.set("strictQuery", true);
 
+app.post("/api/users/register", (req, res) => {
+  const { username, password, email, lastname, firstname } = req.body;
+  bcrypt.hash(password, 10).then((hash) => {
+    UserModel.create({
+      userName: username,
+      password: hash,
+      firstName: firstname,
+      lastName: lastname,
+      email: email,
+    })
+      .then(() => {
+        res.json("User Registered");
+      })
+      .catch((err) => {
+        if (err) {
+          res.status(400).json({ error: err });
+        }
+      });
+  });
+});
 
-// app.post("/register", (req, res) => {
-// const {userName, password} = req.body;
-// bcrypt.hash(password, 10 ).then((hash) => {
-//   Users.create({
-//     userName: userName,
-//     password: hash 
-//   }). then(() => {
-//     res.json('User Registered');
-//   }).catch((err)=>{
-//     if(err){
-//       res.status(400).json({error:err})
-//     }
-//   })
-
-// })
-
-
-// });
-
+//user login check
 
 //routes for users
 app.get("/api/users/getAllUsers", getAllUsersController);
@@ -86,9 +90,6 @@ app.post("/api/messages/addMessage", addMessageController);
 app.put("/api/messages/updateMessage/:id", updateMessageController);
 app.delete("/api/messages/deleteMessage/:id", deleteMessagsController);
 
-
-
-
 mongoose.connect(
   `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`,
   {
@@ -98,7 +99,7 @@ mongoose.connect(
   (info) => {
     app.listen(PORT, () => {
       console.log("info", info);
-      console.log("LISTENING",'Server is running at port : ' + PORT);
+      console.log("LISTENING", "Server is running at port : " + PORT);
     });
   }
 );

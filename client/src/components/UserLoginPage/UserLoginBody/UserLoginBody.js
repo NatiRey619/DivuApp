@@ -27,10 +27,10 @@ const UserLoginBody = () => {
       }
     });
 
-    const registerRoute = () =>{ 
-      let path = `/register`; 
-      navigate(path);
-    }
+  const registerRoute = () => {
+    let path = `/register`;
+    navigate(path);
+  };
 
   const isPassBiggerThenFive = (pass) =>
     pass.length < 5
@@ -44,7 +44,7 @@ const UserLoginBody = () => {
       );
       const data = await respone.json();
       setUserList(data);
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (e) {
       console.log(e);
     }
@@ -54,48 +54,48 @@ const UserLoginBody = () => {
     getAllUsers();
   }, []);
 
-//   return (
-//     <div className="user-login-body">
-//       <h3>WELCOME TO DIVUAPP</h3>
-//       <div className="input-field">
-//         <input
-//           onChange={(e) => {
-//             setUserInput(e.target.value);
-//           }}
-//           type="text"
-//           placeholder="Please enter your User name"
-//         />
-//         <input
-//           onChange={(e) => {
-//             isPassBiggerThenFive(e.target.value);
-//             setPassInput(e.target.value);
-//           }}
-//           type="number"
-//           placeholder="Please enter your Password"
-//         />
-//         {/* <p className={!passFiveDigits ? "helper-text-input" : "hidden"}>
-//           The Password must contain at least five digits
-//         </p> */}
-//         {error && <p>{error}</p>}
-//       </div>
-//       <div className="remember-me-checkbox">
-//         <input className="checkbox" type="checkbox" />
-//         <label>Remember me</label>
-//       </div>
+  //   return (
+  //     <div className="user-login-body">
+  //       <h3>WELCOME TO DIVUAPP</h3>
+  //       <div className="input-field">
+  //         <input
+  //           onChange={(e) => {
+  //             setUserInput(e.target.value);
+  //           }}
+  //           type="text"
+  //           placeholder="Please enter your User name"
+  //         />
+  //         <input
+  //           onChange={(e) => {
+  //             isPassBiggerThenFive(e.target.value);
+  //             setPassInput(e.target.value);
+  //           }}
+  //           type="number"
+  //           placeholder="Please enter your Password"
+  //         />
+  //         {/* <p className={!passFiveDigits ? "helper-text-input" : "hidden"}>
+  //           The Password must contain at least five digits
+  //         </p> */}
+  //         {error && <p>{error}</p>}
+  //       </div>
+  //       <div className="remember-me-checkbox">
+  //         <input className="checkbox" type="checkbox" />
+  //         <label>Remember me</label>
+  //       </div>
 
-//       <button
-//         onClick={() => {
-//           loginCheck(userInput, passInput);
-//         }}
-//         className="button-6"
-//       >
-//         Login
-//       </button>
-//     </div>
-//   );
-// };
+  //       <button
+  //         onClick={() => {
+  //           loginCheck(userInput, passInput);
+  //         }}
+  //         className="button-6"
+  //       >
+  //         Login
+  //       </button>
+  //     </div>
+  //   );
+  // };
 
-  return ! isLoading ? (
+  return !isLoading ? (
     <div className="user-login-body">
       <h3>WELCOME TO DIVUAPP</h3>
       <div className="input-field">
@@ -128,10 +128,10 @@ const UserLoginBody = () => {
         onClick={() => {
           loginCheck(userInput, passInput);
         }}
-        className="button-6">
+        className="button-6"
+      >
         Login
       </button>
-      
     </div>
   ) : (
     <Loading />

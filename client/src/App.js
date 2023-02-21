@@ -13,10 +13,6 @@ import NotFound from "./components/HomePage/HomePageNavPages/NotFound/NotFound";
 import AdminPage from "./components/AdminPage/AdminPage";
 import UserRegisterPage from "./components/HomePage/UserRegisterPage/UserRegisterPage/UserRegisterPage";
 function App() {
-  
-
-
-
   return (
     <BrowserRouter>
       <MyContext.Provider value={{}}>
@@ -31,14 +27,11 @@ function App() {
             <Route path="/register" element={<UserRegisterPage />} />
 
             <Route path="*" element={<NotFound />} />
-
           </Routes>
         </div>
       </MyContext.Provider>
     </BrowserRouter>
-
   );
-  
 }
 
 export default App;
