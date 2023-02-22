@@ -38,6 +38,7 @@ const UserRegisterBody = () => {
         firstname: firstName,
         lastname: lastName,
         email: userEmail,
+        
       },
     ],
   };

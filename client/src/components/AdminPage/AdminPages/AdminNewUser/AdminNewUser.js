@@ -32,9 +32,9 @@ const AdminNewUser = () => {
   var jsonData = {
     newUser: [
       {
-        userName: userName,
-        firstName: firstName,
-        lastName: lastName,
+        username: userName,
+        firstname: firstName,
+        lastname: lastName,
         password: userPassword,
         email: userEmail,
         isAdmin: isAdmin,
@@ -49,7 +49,7 @@ const AdminNewUser = () => {
 
   function AddNewUser() {
     // Send data to the backend via POST
-    fetch("http://localhost:8000/api/users/addUser/", {
+    fetch("http://localhost:8000/api/users/register/", {
       // Enter your IP address here
       method: "POST",
       mode: "cors",
@@ -59,9 +59,9 @@ const AdminNewUser = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userName: userName,
-        firstName: firstName,
-        lastName: lastName,
+        username: userName,
+        firstname: firstName,
+        lastname: lastName,
         password: userPassword,
         email: userEmail,
         isAdmin: isAdmin,

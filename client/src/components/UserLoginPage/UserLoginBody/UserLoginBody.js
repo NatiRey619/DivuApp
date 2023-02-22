@@ -18,7 +18,7 @@ const UserLoginBody = () => {
   const loginCheck = (username, pass) =>
     // need to add redirect for admin users
     userList.map((user) => {
-      console.log(user);
+      console.log(user.password + user.userName);
       if (user.password === pass && user.userName === username) {
         // navigate(`/homepage/${pass}`);
         navigate(`/homepage`);
