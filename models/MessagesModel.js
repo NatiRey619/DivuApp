@@ -19,15 +19,16 @@ const PmMessageSchema = new mongoose.Schema({
     required: true,
     default:null,
   },
+
   userName: {
-    postedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    type: String,
-    default: null,
-  },
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+   },
 
   
-});
 
+});
+  
 // model related to the specific schema
 export const MessagesModel = mongoose.model("PmMessage", PmMessageSchema);
 

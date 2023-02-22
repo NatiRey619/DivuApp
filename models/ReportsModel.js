@@ -25,8 +25,9 @@ const ReportsSchema = new mongoose.Schema({
 
   },
 
-  
+    
 );
 
 // model related to the specific schema
 export const ReportsModel = mongoose.model("Reports", ReportsSchema);
+   
