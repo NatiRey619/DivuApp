@@ -15,17 +15,65 @@ const UserLoginBody = () => {
   const [passInput, setPassInput] = useState();
   const [userInput, setUserInput] = useState();
 
-  const loginCheck = (username, pass) =>
-    // need to add redirect for admin users
-    userList.map((user) => {
-      console.log(user.password + user.userName);
-      if (user.password === pass && user.userName === username) {
-        // navigate(`/homepage/${pass}`);
-        navigate(`/homepage`);
-      } else {
-        setError("Failed, please try again");
-      }
+
+
+  var jsonData = {
+    ExistUser: [
+      {
+        username: userInput,
+        password: passInput,
+      },
+    ],
+  };
+
+  function checkUserLoginAuth() {
+    // Send data to the backend via POST
+    fetch("http://localhost:8000/api/users/login/", {
+      // Enter your IP address here
+      method: "POST",
+      mode: "cors",
+      // body: JSON.stringify(jsonData) // body data type must match "Content-Type" header
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      
+      body: JSON.stringify({
+        username: userInput,
+        password: passInput,
+      }),
     });
+    console.log(jsonData);
+  }
+
+  const loginCheck = (username, pass) =>
+  // need to add redirect for admin users
+
+  userList.map((user) => {
+    
+    
+    console.log(user)
+
+    if (user.password === pass && user.userName === username) {
+      // navigate(`/homepage/${pass}`);
+      navigate(`/homepage`);
+    } else {
+      setError("Failed, please try again");
+    }
+  }); 
+  
+  // const loginCheck = (username, pass) =>
+  //   // need to add redirect for admin users 
+  //   userList.map((user) => {
+  //     console.log( userInput , passInput);
+
+  //     if (user.password === pass && user.userName === username) {
+  //       // navigate(`/homepage/${pass}`);
+  //       navigate(`/homepage`);
+  //     } else {
+  //       setError("Failed, please try again");
+  //     }
+  //   });  
 
   const registerRoute = () => {
     let path = `/register`;
@@ -49,7 +97,7 @@ const UserLoginBody = () => {
       console.log(e);
     }
   };
-
+ 
   useEffect(() => {
     getAllUsers();
   }, []);
@@ -129,8 +177,21 @@ const UserLoginBody = () => {
           loginCheck(userInput, passInput);
         }}
         className="button-6"
-      >
+      > 
         Login
+      </button>
+      <button
+        onClick={() => {
+          checkUserLoginAuth()
+
+
+        }}
+        
+        
+        
+        className="button-6"
+      >
+        Login Auth
       </button>
     </div>
   ) : (

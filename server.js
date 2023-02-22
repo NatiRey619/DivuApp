@@ -68,13 +68,28 @@ app.post("/api/users/register", (req, res) => {
   });
 });
 
-app.post("/api/users/login", async (req, res) => {
+app.post("/api/users/login", async (req, res) => { // working - checking if username exist in DB
   const { username, password } = req.body;
 
   const user = await UserModel.findOne({ userName: username });
   if (!user) res.status(400).json({ error: "User doesnt exist" });
 
-  res.json("Logged In");
+    const dbPassword = user.password
+    bcrypt.compare(password, dbPassword).then((match)=>{
+      if (!match){
+        res.status(400).json({error : "Wrong Username and Password combo !"})
+
+      } else {
+
+        res.json("Logged In");
+        res.redirect('/homepage')
+
+
+      }
+
+    })
+
+
 });
 
 //user login check
