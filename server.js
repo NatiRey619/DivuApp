@@ -72,30 +72,29 @@ app.post("/api/users/login", async (req, res) => { // working - checking if user
   const { username, password } = req.body;
 
   const user = await UserModel.findOne({ userName: username });
-  if (!user) res.status(400).json({ error: "User doesnt exist" });
+  if (!user) res.status(400).json({ error: "User doesnt exist" }); // first checking if the user exist
 
     const dbPassword = user.password
     bcrypt.compare(password, dbPassword).then((match)=>{
       if (!match){
-        res.status(400).json({error : "Wrong Username and Password combo !"})
+        res.status(400).json({error : "Wrong Username and Password combo !"}) // if user exist and password wrong
 
       } else {
 
-        res.json("Logged In");
-        res.redirect('/homepage')
+        res.json("Logged In"); // if username & password are good
 
 
-      }
-
+      } 
+ 
     })
 
 
 });
 
 //user login check
-
+ 
 //routes for users
-app.post("/api/users/register", addUserAuthController);
+app.post("/api/users/register", addUserAuthController); 
 
 app.get("/api/users/getAllUsers", getAllUsersController);
 app.get("/api/users/getOneUser/:id", getOneUserController);
