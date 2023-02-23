@@ -28,6 +28,40 @@ export const addUserAuthController = async (req, res) => {
   });
 };
 
+export const LoginUserAuthController = async (req, res) =>  { // working - checking if username exist in DB
+  const { username, password } = req.body;
+
+  const user = await UserModel.findOne({ userName: username });
+  if (!user) res.status(400).json({ error: "User doesnt exist" }); // first checking if the user exist
+
+    const dbPassword = user.password
+    console.log(dbPassword, password)
+    bcrypt.compare(password, dbPassword).then((match)=>{
+      if (!match){
+        res.status(400).json({error : "Wrong Username and Password combo !"}) // if user exist and password wrong
+        console.log("wrong combo")
+      } else {
+
+        const accessToken = createTokens(user) // creating token
+        console.log('Token'+' '+ accessToken)
+
+        res.cookie("access-token", accessToken, { 
+          maxAge: 60 * 60 * 24 * 30 * 1000,
+          httpOnly: true,
+          
+
+        });
+
+        res.json("Logged In" +" "+ "Token" +" "+accessToken); // if username & password are good
+        
+
+      } 
+ 
+    }) 
+
+
+}
+
 export const getAllUsersController = async (req, res) => {
   try {
     const allUsers = await getAllUsers();

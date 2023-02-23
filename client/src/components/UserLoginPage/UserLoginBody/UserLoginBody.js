@@ -47,7 +47,8 @@ const UserLoginBody = () => {
         password: passInput,
       }),
     });
-        
+    
+
 
     
     }
@@ -55,11 +56,11 @@ const UserLoginBody = () => {
   const loginCheck = (username, pass) =>
   // need to add redirect for admin users
 
-  userList.map((user) => {
+  userList.map((user) => { 
     
      console.log(user)
 
-       
+        
 
     if (user.password === pass && user.userName === username) {
       // navigate(`/homepage/${pass}`);
@@ -138,6 +139,8 @@ const UserLoginBody = () => {
       </button>
       <button
         onClick={() => {
+          loginCheck(userInput, passInput);
+
           checkUserLoginAuth()
 
 
@@ -156,3 +159,4 @@ const UserLoginBody = () => {
 };
 
 export default UserLoginBody;
+ 

@@ -12,6 +12,7 @@ import {
   deleteUserController,
   getOneUserController,
   addUserAuthController,
+  LoginUserAuthController
 } from "./controllers/UserControllers.js";
 
 import {
@@ -80,7 +81,7 @@ app.post("/api/users/login", async (req, res,) => { // working - checking if use
   if (!user) res.status(400).json({ error: "User doesnt exist" }); // first checking if the user exist
 
     const dbPassword = user.password
-    console.log(dbPassword, password)
+    console.log("DB PASS"+" "+dbPassword, "USER PASS"+" "+password)
     bcrypt.compare(password, dbPassword).then((match)=>{
       if (!match){
         res.status(400).json({error : "Wrong Username and Password combo !"}) // if user exist and password wrong
@@ -88,18 +89,19 @@ app.post("/api/users/login", async (req, res,) => { // working - checking if use
       } else {
 
         const accessToken = createTokens(user) // creating token
-        console.log('Token'+' '+ accessToken)
+        console.log('GOT TOKEN'+' '+ accessToken)
 
         res.cookie("access-token", accessToken, { 
           maxAge: 60 * 60 * 24 * 30 * 1000,
           httpOnly: true,
           
 
-        });
-
-        res.json("Logged In" +" "+ "Token" +" "+accessToken); // if username & password are good
+        }); 
         
+        res.json("Logged In" +" "+ "Token" +" "+accessToken); // if username & password are good
+        console.log('User Logged') 
 
+        
       } 
  
     }) 
@@ -107,9 +109,9 @@ app.post("/api/users/login", async (req, res,) => { // working - checking if use
 
 });
 
-
+ 
 app.get("/api/users/profile", validateToken, (req, res) =>{
-  res.json("profileHere") // only if user logged in , got token 
+  res.json("profileHere" ) // only if user logged in , got token 
 })
  
 
@@ -119,6 +121,9 @@ app.get("/api/users/profile", validateToken, (req, res) =>{
  
 //routes for users
 app.post("/api/users/register", addUserAuthController); 
+app.post("/api/users/login", LoginUserAuthController);
+
+
 
 app.get("/api/users/getAllUsers", getAllUsersController);
 app.get("/api/users/getOneUser/:id", getOneUserController);
