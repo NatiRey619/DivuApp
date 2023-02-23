@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
+
 import {
   getAllUsersController,
   addUserController,
@@ -38,10 +39,13 @@ const app = express();
 
 import { UserModel } from "./models/UserModel.js";
 import bcrypt from "bcrypt";
+import { createTokens } from "./JWT.js";
+import cookieParser from "cookie-parser";
+
 
 // middlewares for the server
 app.use(express.json());
-
+app.use(cookieParser()) // using cookieParser
 app.use(cors());
 // app.use(express.static("client/build"));
 
@@ -75,21 +79,38 @@ app.post("/api/users/login", async (req, res) => { // working - checking if user
   if (!user) res.status(400).json({ error: "User doesnt exist" }); // first checking if the user exist
 
     const dbPassword = user.password
+    console.log(dbPassword, password)
     bcrypt.compare(password, dbPassword).then((match)=>{
       if (!match){
         res.status(400).json({error : "Wrong Username and Password combo !"}) // if user exist and password wrong
-
+        console.log("wrong combo")
       } else {
 
-        res.json("Logged In"); // if username & password are good
+        const accessToken = createTokens(user) // creating token
+        console.log(accessToken)
 
+        res.cookie("access-token", accessToken, {
+          maxAge: 60*60*24*30*1000
+
+        } ) 
+
+        res.json("Logged In"); // if username & password are good
+        
 
       } 
  
-    })
+    }) 
 
 
 });
+
+
+app.get("/api/users/profile", (req, res) =>{
+  res.json("profileHere")
+})
+
+
+
 
 //user login check
  
