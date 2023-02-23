@@ -39,7 +39,8 @@ const app = express();
 
 import { UserModel } from "./models/UserModel.js";
 import bcrypt from "bcrypt";
-import { createTokens } from "./JWT.js";
+import { createTokens, validateToken } from "./JWT.js";
+
 import cookieParser from "cookie-parser";
 
 
@@ -90,11 +91,12 @@ app.post("/api/users/login", async (req, res) => { // working - checking if user
         console.log(accessToken)
 
         res.cookie("access-token", accessToken, {
-          maxAge: 60*60*24*30*1000
+          maxAge: 60 * 60 * 24 * 30 * 1000,
+          httpOnly: true,
 
-        } ) 
+        });
 
-        res.json("Logged In"); // if username & password are good
+        res.json("Logged In" +" "+ "Token" +" "+accessToken); // if username & password are good
         
 
       } 
@@ -105,8 +107,8 @@ app.post("/api/users/login", async (req, res) => { // working - checking if user
 });
 
 
-app.get("/api/users/profile", (req, res) =>{
-  res.json("profileHere")
+app.get("/api/users/profile", validateToken, (req, res) =>{
+  res.json("profileHere") // only if user logged in , got token 
 })
 
 
