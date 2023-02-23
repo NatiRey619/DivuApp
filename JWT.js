@@ -31,7 +31,7 @@ export const validateToken = (req, res, next) => {
 
     }catch (err){
 
-        return res.status(400).json({error : "Error not recognized Token" })
+        return res.status(400).json({error : "Error not recognized Token - Please login again to get New Valid Token!" })
 
     }
 

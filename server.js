@@ -73,7 +73,7 @@ app.post("/api/users/register", (req, res) => {
   });
 });
 
-app.post("/api/users/login", async (req, res) => { // working - checking if username exist in DB
+app.post("/api/users/login", async (req, res,) => { // working - checking if username exist in DB
   const { username, password } = req.body;
 
   const user = await UserModel.findOne({ userName: username });
@@ -88,11 +88,12 @@ app.post("/api/users/login", async (req, res) => { // working - checking if user
       } else {
 
         const accessToken = createTokens(user) // creating token
-        console.log(accessToken)
+        console.log('Token'+' '+ accessToken)
 
-        res.cookie("access-token", accessToken, {
+        res.cookie("access-token", accessToken, { 
           maxAge: 60 * 60 * 24 * 30 * 1000,
           httpOnly: true,
+          
 
         });
 
@@ -110,7 +111,7 @@ app.post("/api/users/login", async (req, res) => { // working - checking if user
 app.get("/api/users/profile", validateToken, (req, res) =>{
   res.json("profileHere") // only if user logged in , got token 
 })
-
+ 
 
 
 

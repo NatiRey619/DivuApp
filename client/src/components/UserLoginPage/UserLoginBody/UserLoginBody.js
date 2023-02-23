@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../../../Loading/Loading";
 import UserRegisterBody from "../../HomePage/UserRegisterPage/UserRegisterBody/UserRegisterBody";
 
+
+
 const UserLoginBody = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
@@ -26,6 +28,8 @@ const UserLoginBody = () => {
     ],
   };
 
+
+
   function checkUserLoginAuth() {
     // Send data to the backend via POST
     fetch("http://localhost:8000/api/users/login/", {
@@ -43,8 +47,10 @@ const UserLoginBody = () => {
         password: passInput,
       }),
     });
-    console.log(jsonData);
-  }
+        
+
+    
+    }
 
   const loginCheck = (username, pass) =>
   // need to add redirect for admin users
@@ -53,7 +59,7 @@ const UserLoginBody = () => {
     
      console.log(user)
 
-     
+       
 
     if (user.password === pass && user.userName === username) {
       // navigate(`/homepage/${pass}`);
@@ -63,18 +69,6 @@ const UserLoginBody = () => {
     }
   }); 
   
-  // const loginCheck = (username, pass) =>
-  //   // need to add redirect for admin users 
-  //   userList.map((user) => {
-  //     console.log( userInput , passInput);
-
-  //     if (user.password === pass && user.userName === username) {
-  //       // navigate(`/homepage/${pass}`);
-  //       navigate(`/homepage`);
-  //     } else {
-  //       setError("Failed, please try again");
-  //     }
-  //   });  
 
   const registerRoute = () => {
     let path = `/register`;
@@ -103,46 +97,7 @@ const UserLoginBody = () => {
     getAllUsers();
   }, []);
 
-  //   return (
-  //     <div className="user-login-body">
-  //       <h3>WELCOME TO DIVUAPP</h3>
-  //       <div className="input-field">
-  //         <input
-  //           onChange={(e) => {
-  //             setUserInput(e.target.value);
-  //           }}
-  //           type="text"
-  //           placeholder="Please enter your User name"
-  //         />
-  //         <input
-  //           onChange={(e) => {
-  //             isPassBiggerThenFive(e.target.value);
-  //             setPassInput(e.target.value);
-  //           }}
-  //           type="number"
-  //           placeholder="Please enter your Password"
-  //         />
-  //         {/* <p className={!passFiveDigits ? "helper-text-input" : "hidden"}>
-  //           The Password must contain at least five digits
-  //         </p> */}
-  //         {error && <p>{error}</p>}
-  //       </div>
-  //       <div className="remember-me-checkbox">
-  //         <input className="checkbox" type="checkbox" />
-  //         <label>Remember me</label>
-  //       </div>
-
-  //       <button
-  //         onClick={() => {
-  //           loginCheck(userInput, passInput);
-  //         }}
-  //         className="button-6"
-  //       >
-  //         Login
-  //       </button>
-  //     </div>
-  //   );
-  // };
+  
 
   return !isLoading ? (
     <div className="user-login-body">
