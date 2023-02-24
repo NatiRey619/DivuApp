@@ -76,6 +76,7 @@ app.post("/api/users/register", (req, res) => {
 
 app.post("/api/users/login", async (req, res,) => { // working - checking if username exist in DB
   const { username, password } = req.body;
+  console.log(username, password)
 
   const user = await UserModel.findOne({ userName: username });
   if (!user) res.status(400).json({ error: "User doesnt exist" }); // first checking if the user exist
@@ -83,6 +84,7 @@ app.post("/api/users/login", async (req, res,) => { // working - checking if use
     const dbPassword = user.password
     console.log("DB PASS"+" "+dbPassword, "USER PASS"+" "+password)
     bcrypt.compare(password, dbPassword).then((match)=>{
+
       if (!match){
         res.status(400).json({error : "Wrong Username and Password combo !"}) // if user exist and password wrong
         console.log("wrong combo")
@@ -98,8 +100,12 @@ app.post("/api/users/login", async (req, res,) => { // working - checking if use
 
         }); 
         
+        
         res.json("Logged In" +" "+ "Token" +" "+accessToken); // if username & password are good
+        
         console.log('User Logged') 
+
+        
 
         
       } 

@@ -30,7 +30,7 @@ const UserLoginBody = () => {
 
 
 
-  function checkUserLoginAuth() {
+  function checkUserLoginAuth(username,password) {
     // Send data to the backend via POST
     fetch("http://localhost:8000/api/users/login/", {
       // Enter your IP address here
@@ -45,12 +45,25 @@ const UserLoginBody = () => {
       body: JSON.stringify({
         username: userInput,
         password: passInput,
-      }),
-    });
+      })
+      
+    })
     
 
-
     
+    // .then(data => {
+    //  // enter you logic when the fetch is successful
+    //   console.log(data)
+
+
+    // })
+    // .catch(error => {
+    // // enter your logic for when there is an error (ex. error toast)
+    //  console.log(error)
+    // })  
+    
+ 
+     
     }
 
   const loginCheck = (username, pass) =>
@@ -139,9 +152,10 @@ const UserLoginBody = () => {
       </button>
       <button
         onClick={() => {
-          loginCheck(userInput, passInput);
 
           checkUserLoginAuth()
+
+
 
 
         }}

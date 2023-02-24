@@ -24,9 +24,11 @@ export const validateToken = (req, res, next) => {
         const validToken = verify(accessToken, "jwtsecretplschange")
 
         if (validToken){
-
+            console.log(validToken)
             req.authenticated = true; 
+
             return next();
+
         }
 
     }catch (err){
