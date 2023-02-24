@@ -71,7 +71,7 @@ const UserLoginBody = () => {
 
   userList.map((user) => { 
     
-     console.log(user)
+     console.log(user) 
 
         
 
