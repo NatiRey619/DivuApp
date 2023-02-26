@@ -51,12 +51,12 @@ import { useState } from "react";
       } catch (e) {
         console.log(e);
       }
-    };    const columns = useMemo(
+    };    const columns  = useMemo(
       () => [
         {
           accessorKey: '_id', //access nested data with dot notation
           header: 'ID',
-          size: 10,
+          size: 20, //small column
 
         },
         {
@@ -95,21 +95,34 @@ import { useState } from "react";
 
         },
         {
-          accessorKey: 'isAdmin', //normal accessorKey
-          header: 'Admin',
+          Header: "Delete",
+          id:'delete',
+            accessor: str => "delete",
+
+        Cell: (row)=> (
+          <span onClick={DeleteUser}>
+          Delete
+        </span> 
+) 
+          
         },
         {
-          accessorKey: 'DeleteButton', //normal accessorKey
-          header: 'DeleteButton',
-          render: ({ row }) => (<button onClick={(e) => this.handleButtonClick(e, row)}>Click Me</button>)
-
+          accessorKey: 'isAdmin', //normal accessorKey
+          header: 'Admin',
+          value: "delete",
+          
         },
+        
+        
+      
+   
               
           
             ],
       [],
     );
   
+    //Delete button need to add to react table
     function DeleteUser(userId) {
       fetch(`http://localhost:8000/api/users/deleteUser/${userId}`, {
         method: "DELETE",
@@ -130,7 +143,8 @@ import { useState } from "react";
 
 <button onClick={getAllUsers}>get all users</button>
 
-<MaterialReactTable columns={columns} data={formObject} /> ;
+<MaterialReactTable columns={columns} data={formObject}
+ /> ;
       </div>
     ) 
   };
