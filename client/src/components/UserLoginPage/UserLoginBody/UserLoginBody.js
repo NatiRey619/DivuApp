@@ -28,7 +28,36 @@ const UserLoginBody = () => {
     ],
   };
 
+
+
+
+
+  const newPost = async () => {
+    try {
+        const response = await fetch('http://localhost:8000/api/users/login/', {
+           method: 'POST',
+           headers: {
+               'Content-Type': 'application/json',
+           },
+           body: JSON.stringify({username: userInput,
+            password: passInput,
+          })  })
+        
+
+ 
+        const loginSuc = await response.json();
+        console.log(loginSuc)
+        return navigate(`/homepage`)
+      } catch (error) {
+          console.error(error)
+      }
+    } 
+    
+
+
+
   const postData = async () => {
+
     
     const requestOptions = {
                     method: 'POST',
@@ -37,13 +66,13 @@ const UserLoginBody = () => {
                     username: userInput,
                     password: passInput,
                   })            }
+                  
         const response = await fetch('http://localhost:8000/api/users/login/', requestOptions )
+
         const loginresp = await response.json()
         console.log(loginresp)
-        .then(() => {
-          // enter you logic when the fetch is successful
-          navigate(`/homepage`);
-        })
+        .then(() =>  navigate(`/homepage`)// enter you logic when the fetch is successful
+        )
          .catch(error => {
            // enter your logic for when there is an error (ex. error toast)
           console.log(error)
@@ -176,7 +205,7 @@ const UserLoginBody = () => {
       <button
         onClick={() => {
 
-          postData()
+          newPost()
 
 
 
