@@ -28,6 +28,29 @@ const UserLoginBody = () => {
     ],
   };
 
+  const postData = async () => {
+    
+    const requestOptions = {
+                    method: 'POST',
+                   headers: { 'Content-Type': 'application/json' },
+                   body: JSON.stringify({
+                    username: userInput,
+                    password: passInput,
+                  })            }
+        const response = await fetch('http://localhost:8000/api/users/login/', requestOptions )
+        const loginresp = await response.json()
+        console.log(loginresp)
+        .then(() => {
+          // enter you logic when the fetch is successful
+          navigate(`/homepage`);
+        })
+         .catch(error => {
+           // enter your logic for when there is an error (ex. error toast)
+          console.log(error)
+         })
+       
+    }
+
 
 
   function checkUserLoginAuth(username,password) {
@@ -111,11 +134,11 @@ const UserLoginBody = () => {
     getAllUsers();
   }, []);
 
-  
+   
 
   return !isLoading ? (
     <div className="user-login-body">
-      <h3>WELCOME TO DIVUAPP</h3>
+      <h3>WELCOME TO DIVUAPP</h3> 
       <div className="input-field">
         <input
           onChange={(e) => {
@@ -153,7 +176,7 @@ const UserLoginBody = () => {
       <button
         onClick={() => {
 
-          checkUserLoginAuth()
+          postData()
 
 
 
