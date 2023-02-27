@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../../../Loading/Loading";
 import UserRegisterBody from "../../HomePage/UserRegisterPage/UserRegisterBody/UserRegisterBody";
 
-
-
 const UserLoginBody = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
@@ -19,18 +17,37 @@ const UserLoginBody = () => {
 
 
 
-  var jsonData = {
-    ExistUser: [
-      {
-        username: userInput,
-        password: passInput,
-      },
-    ],
+  const newPost = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/users/login/", {
+        method: "POST",
+        credentials: "include", // added this part
+
+        headers: {
+          "Content-Type": "application/json",
+          withCredentials: true,
+          
+        },
+        body: JSON.stringify({ username: userInput, password: passInput }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+      if (data.isSuccess) {
+        navigate(`/homepage`);
+      }
+    } catch (error) {
+
+      console.error(error);
+
+    }
+    setError("Wrong Username and Password combo");
+
   };
 
 
 
-  function checkUserLoginAuth(username,password) {
+  function checkUserLoginAuth(username, password) {
     // Send data to the backend via POST
     fetch("http://localhost:8000/api/users/login/", {
       // Enter your IP address here
@@ -41,48 +58,28 @@ const UserLoginBody = () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      
+
       body: JSON.stringify({
         username: userInput,
         password: passInput,
-      })
-      
-    })
-    
-
-    
-    // .then(data => {
-    //  // enter you logic when the fetch is successful
-    //   console.log(data)
-
-
-    // })
-    // .catch(error => {
-    // // enter your logic for when there is an error (ex. error toast)
-    //  console.log(error)
-    // })  
-    
+      }),
+    });
+  }
  
-     
-    }
-
   const loginCheck = (username, pass) =>
-  // need to add redirect for admin users
+    // need to add redirect for admin users
 
   userList.map((user) => { 
     
      console.log(user) 
 
-        
-
-    if (user.password === pass && user.userName === username) {
-      // navigate(`/homepage/${pass}`);
-      navigate(`/homepage`);
-    } else {
-      setError("Failed, please try again");
-    }
-  }); 
-  
+      if (user.password === pass && user.userName === username) {
+        // navigate(`/homepage/${pass}`);
+        navigate(`/homepage`);
+      } else {
+        setError("Failed, please try again");
+      }
+    });
 
   const registerRoute = () => {
     let path = `/register`;
@@ -106,12 +103,10 @@ const UserLoginBody = () => {
       console.log(e);
     }
   };
- 
+
   useEffect(() => {
     getAllUsers();
   }, []);
-
-  
 
   return !isLoading ? (
     <div className="user-login-body">
@@ -144,24 +139,8 @@ const UserLoginBody = () => {
       <p onClick={registerRoute}>register</p>
       <button
         onClick={() => {
-          loginCheck(userInput, passInput);
+          newPost();
         }}
-        className="button-6"
-      > 
-        Login
-      </button>
-      <button
-        onClick={() => {
-
-          checkUserLoginAuth()
-
-
-
-
-        }}
-        
-        
-        
         className="button-6"
       >
         Login Auth
@@ -173,4 +152,3 @@ const UserLoginBody = () => {
 };
 
 export default UserLoginBody;
- 

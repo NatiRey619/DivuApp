@@ -1,12 +1,11 @@
-import sign from "jsonwebtoken";
-import {verify} from "jsonwebtoken";
 import jsonwebtoken  from 'jsonwebtoken';
 
 
 export const createTokens = (user) => {
         const accessToken = jsonwebtoken.sign(
             {username : user.username, id: user.id},
-                 "jwtsecretplschange"
+                 "jwtsecretplschange",
+                 {expiresIn: "20s"}
                  );
             return accessToken
 
@@ -21,7 +20,7 @@ export const validateToken = (req, res, next) => {
 
     try {
 
-        const validToken = verify(accessToken, "jwtsecretplschange")
+        const validToken = jsonwebtoken.verify(accessToken, "jwtsecretplschange")
 
         if (validToken){
             console.log(validToken)
@@ -33,7 +32,7 @@ export const validateToken = (req, res, next) => {
 
     }catch (err){
 
-        return res.status(400).json({error : "Error not recognized Token - Please login again to get New Valid Token!" })
+        return res.status(400).json({error : "Error not recognized Token - Please login again to get New Valid Token!" }) 
 
     }
 

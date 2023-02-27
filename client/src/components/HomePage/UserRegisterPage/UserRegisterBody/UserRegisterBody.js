@@ -29,7 +29,6 @@ const UserRegisterBody = () => {
   // }
   // const passwordStrength = Object.values(passwordTracker).filter(value => value).length;
 
-  
   var jsonData = {
     newUser: [
       {
@@ -38,7 +37,6 @@ const UserRegisterBody = () => {
         firstname: firstName,
         lastname: lastName,
         email: userEmail,
-        
       },
     ],
   };
@@ -49,10 +47,8 @@ const UserRegisterBody = () => {
       : setPassFiveDigitsError("");
 
   function AddNewUser() {
-    
     // Send data to the backend via POST
     fetch("http://localhost:8000/api/users/register/", {
-      
       // Enter your IP address here
       method: "POST",
       mode: "cors",
