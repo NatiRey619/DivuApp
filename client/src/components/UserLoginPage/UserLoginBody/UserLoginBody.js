@@ -15,22 +15,18 @@ const UserLoginBody = () => {
   const [passInput, setPassInput] = useState();
   const [userInput, setUserInput] = useState();
 
-  var jsonData = {
-    ExistUser: [
-      {
-        username: userInput,
-        password: passInput,
-      },
-    ],
-  };
+
 
   const newPost = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/users/login/", {
         method: "POST",
+        credentials: "include", // added this part
+
         headers: {
           "Content-Type": "application/json",
           withCredentials: true,
+          
         },
         body: JSON.stringify({ username: userInput, password: passInput }),
       });
@@ -45,32 +41,7 @@ const UserLoginBody = () => {
     }
   };
 
-  const postData = async () => {
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: userInput,
-        password: passInput,
-      }),
-    };
 
-    const response = await fetch(
-      "http://localhost:8000/api/users/login/",
-      requestOptions
-    );
-
-    const loginresp = await response.json();
-    console
-      .log(loginresp)
-      .then(
-        () => navigate(`/homepage`) // enter you logic when the fetch is successful
-      )
-      .catch((error) => {
-        // enter your logic for when there is an error (ex. error toast)
-        console.log(error);
-      });
-  };
 
   function checkUserLoginAuth(username, password) {
     // Send data to the backend via POST

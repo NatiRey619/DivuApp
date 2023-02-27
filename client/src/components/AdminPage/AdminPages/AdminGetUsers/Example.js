@@ -33,11 +33,10 @@ import { useState } from "react";
       })
         .then((res) => res.json()) // or res.json()
         .then((res) =>
-          setAllUsers(allUsers.filter((user) => user._id !== res._id))
+          setFormObject(formObject.filter((user) => user._id !== res._id))
         );
     }
 
-    const [allUsers, setAllUsers] = useState("");
 
     const getAllUsers = async () => {
       try {
@@ -123,20 +122,20 @@ import { useState } from "react";
     );
   
     //Delete button need to add to react table
-    function DeleteUser(userId) {
-      fetch(`http://localhost:8000/api/users/deleteUser/${userId}`, {
-        method: "DELETE",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json()) // or res.json()
-        .then((res) =>
-          setAllUsers(allUsers.filter((user) => user._id !== res._id))
-        );
-    }
+    // function DeleteUser(userId) {
+    //   fetch(`http://localhost:8000/api/users/deleteUser/${userId}`, {
+    //     method: "DELETE",
+    //     mode: "cors",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //     },
+    //   })
+    //     .then((res) => res.json()) // or res.json()
+    //     .then((res) =>
+    //       setAllUsers(allUsers.filter((user) => user._id !== res._id))
+    //     );
+    // }
     return (
 
       <div>

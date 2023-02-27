@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
+
 import {
   getAllUsersController,
   addUserController,
@@ -32,6 +33,11 @@ import {
 
 dotenv.config();
 
+const corsOptions = {
+  origin: true, //included origin as true
+  credentials: true, //included credentials as true
+};
+
 const { PORT, DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
 
 //the initialising of the server itself
@@ -46,7 +52,10 @@ import cookieParser from "cookie-parser";
 // middlewares for the server
 app.use(express.json());
 app.use(cookieParser()); // using cookieParser
-app.use(cors());
+
+app.use(cors(corsOptions));
+
+// app.use(cors({}));
 // app.use(express.static("client/build"));
 
 mongoose.set("strictQuery", true);
@@ -72,9 +81,11 @@ app.post("/api/users/register", (req, res) => {
   });
 });
 
-app.post("/api/users/login", async (req, res) => {
+app.post("/api/users/login", async (req, res,next) => {
+  
   // working - checking if username exist in DB
   const { username, password } = req.body;
+  
   console.log(username, password);
 
   const user = await UserModel.findOne({ userName: username });
@@ -93,11 +104,16 @@ app.post("/api/users/login", async (req, res) => {
       const accessToken = createTokens(user); // creating token
       console.log("GOT TOKEN" + " " + accessToken);
 
+
       res.cookie("access-token", accessToken, {
+        
         maxAge: 60 * 60 * 24 * 30 * 1000,
-        httpOnly: true,
-      });
+        httpOnly: false,
+          }) ;
+
+
       res.json({ accessToken, isSuccess: true }); // if username & password are good
+
       console.log("User Logged");
     }
   });
@@ -107,7 +123,7 @@ app.get("/api/users/profile", validateToken, (req, res) => {
   res.json("profileHere"); // only if user logged in , got token
 });
 
-//user login check
+//user login check 
 
 //routes for users
 app.post("/api/users/register", addUserAuthController);

@@ -123,7 +123,7 @@ export const SideBar = () => {
           </IconButton>
           My Reports
         </Button>
-        <Box sx={{ flexGrow: 0 }}>
+        <Box sx={{ display: 'flex' }}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar>N</Avatar>
@@ -142,7 +142,7 @@ export const SideBar = () => {
               vertical: "top",
               horizontal: "right",
             }}
-            open={Boolean(anchorElUser)}
+            open={Boolean(anchorElUser)} 
             onClose={handleCloseUserMenu}
           >
             <MenuItem
