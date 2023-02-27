@@ -37,8 +37,12 @@ const UserLoginBody = () => {
         navigate(`/homepage`);
       }
     } catch (error) {
+
       console.error(error);
+
     }
+    setError("Wrong Username and Password combo");
+
   };
 
 
@@ -60,18 +64,8 @@ const UserLoginBody = () => {
         password: passInput,
       }),
     });
-
-    // .then(data => {
-    //  // enter you logic when the fetch is successful
-    //   console.log(data)
-
-    // })
-    // .catch(error => {
-    // // enter your logic for when there is an error (ex. error toast)
-    //  console.log(error)
-    // })
   }
-
+ 
   const loginCheck = (username, pass) =>
     // need to add redirect for admin users
 
@@ -142,14 +136,6 @@ const UserLoginBody = () => {
         <label>Remember me</label>
       </div>
       <p onClick={registerRoute}>register</p>
-      <button
-        onClick={() => {
-          loginCheck(userInput, passInput);
-        }}
-        className="button-6"
-      >
-        Login
-      </button>
       <button
         onClick={() => {
           newPost();
