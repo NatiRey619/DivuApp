@@ -56,7 +56,7 @@ const StartShift = () => {
     setStartShift();
     console.log(endShift);
     console.log(startShift);
-    setError("");
+    setError(""); 
     setstartShiftClicked(true)
 
   }

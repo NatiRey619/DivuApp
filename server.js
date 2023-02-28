@@ -81,7 +81,7 @@ app.post("/api/users/register", (req, res) => {
   });
 });
 
-app.post("/api/users/login", async (req, res,next) => {
+app.post("/api/users/login", async (req, res) => {
   
   // working - checking if username exist in DB
   const { username, password } = req.body;
@@ -102,7 +102,7 @@ app.post("/api/users/login", async (req, res,next) => {
       console.log("wrong combo");
     } else {
       const accessToken = createTokens(user); // creating token
-      console.log("GOT TOKEN" + " " + accessToken);
+      console.log("GOT TOKEN" + " " + accessToken + 'USER ID' + " " +user._id);
 
 
       res.cookie("access-token", accessToken, {
@@ -112,7 +112,7 @@ app.post("/api/users/login", async (req, res,next) => {
           }) ;
 
 
-      res.json({ accessToken, isSuccess: true }); // if username & password are good
+      res.json({ accessToken, isSuccess: true ,userName: username, id: user._id  }); // if username & password are good
 
       console.log("User Logged");
     }

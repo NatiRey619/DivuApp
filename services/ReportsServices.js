@@ -18,3 +18,4 @@ export const getOneReport = (id) => {
 export const deleteOneReport = (id) => {
   return ReportsModel.findOneAndDelete({ _id: id });
 };
+ 
