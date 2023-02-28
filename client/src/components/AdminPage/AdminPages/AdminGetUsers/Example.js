@@ -2,6 +2,7 @@ import { Table } from "@mui/material";
 import React, { useMemo } from 'react';
 import MaterialReactTable from 'material-react-table';
 import { useState } from "react";
+import "./Example.css";
 
 
 
@@ -48,11 +49,12 @@ import { useState } from "react";
 
 
 
-<div>
+<div className="all-users">
 <button onClick={getAllUsers}>get all users</button>
 {allUsers.length
     ? allUsers.map(user => (
       <table class="my_table">
+        
   <tr>
     <th>First Name</th>
     <th>User name</th>
@@ -65,6 +67,7 @@ import { useState } from "react";
     <td>{user.email}</td>
     <td>{user.dateCreated}</td>
   </tr>
+  
 </table>
     ))
     :  "No Data"
