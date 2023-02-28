@@ -1,38 +1,45 @@
-.user-login-body{
-    height: 55%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin: auto;
-
+.user-login-body {
+  height: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin: auto;
 }
 
-
-
-.input-field{
-    width: 100%;
-    text-align: center;
-
-}
-.input-field > input{
-    padding-bottom: 3%;
-    padding-top: 3%;
-    width: 90%;
-    border-end-end-radius: 100px;
-    border-top-right-radius: 100px;
-
+.input-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
+.input-field > input {
+  padding-bottom: 3%;
+  padding-top: 3%;
+  width: 90%;
+  border-end-end-radius: 100px;
+  border-top-right-radius: 100px;
+}
 
-.remember-me-checkbox
-    input[type=checkbox] {
-        accent-color: red;
-      }
-    
+.password-div {
+  width: 100%;
+  display: flex;
+}
+.password-div > input {
+  padding-bottom: 3%;
+  padding-top: 3%;
+  width: 100%;
+  border-end-end-radius: 100px;
+  border-top-right-radius: 100px;
+}
 
-.user-login-body >h3{
-    font-size: 1.7rem;
-    letter-spacing: 0.4rem;
-    font-family:monospace;
+.remember-me-checkbox input[type="checkbox"] {
+  accent-color: red;
+}
+
+.user-login-body > h3 {
+  font-size: 1.7rem;
+  letter-spacing: 0.4rem;
+  font-family: monospace;
 }
