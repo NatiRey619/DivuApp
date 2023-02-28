@@ -15,8 +15,6 @@ const UserLoginBody = () => {
   const [passInput, setPassInput] = useState();
   const [userInput, setUserInput] = useState();
 
-
-
   const newPost = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/users/login/", {
@@ -26,7 +24,6 @@ const UserLoginBody = () => {
         headers: {
           "Content-Type": "application/json",
           withCredentials: true,
-          
         },
         body: JSON.stringify({ username: userInput, password: passInput }),
       });
@@ -37,15 +34,10 @@ const UserLoginBody = () => {
         navigate(`/homepage`);
       }
     } catch (error) {
-
       console.error(error);
-
     }
     setError("Wrong Username and Password combo");
-
   };
-
-
 
   function checkUserLoginAuth(username, password) {
     // Send data to the backend via POST
@@ -65,7 +57,7 @@ const UserLoginBody = () => {
       }),
     });
   }
- 
+
   const loginCheck = (username, pass) =>
     // need to add redirect for admin users
 
@@ -110,7 +102,7 @@ const UserLoginBody = () => {
   return !isLoading ? (
     <div className="user-login-body">
       <h3>WELCOME TO DIVUAPP</h3>
-      <div className="input-field"> 
+      <div className="input-field">
         <input
           onChange={(e) => {
             setUserInput(e.target.value);

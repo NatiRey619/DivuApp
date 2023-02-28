@@ -16,6 +16,16 @@ const HomeNav = () => {
 
   const navigate = useNavigate();
 
+  const getProfileDetails = async () => {
+    const response = await fetch("http://localhost:8000/api/users/profile");
+    const data = await response.json();
+    console.log(data);
+  };
+
+  useEffect(() => {
+    getProfileDetails();
+  }, []);
+
   return (
     <div className="navbar">
       <span>

@@ -4,7 +4,6 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
-
 import {
   getAllUsersController,
   addUserController,
@@ -82,10 +81,10 @@ app.post("/api/users/register", (req, res) => {
 });
 
 app.post("/api/users/login", async (req, res) => {
-  
   // working - checking if username exist in DB
+
   const { username, password } = req.body;
-  
+
   console.log(username, password);
 
   const user = await UserModel.findOne({ userName: username });
@@ -102,17 +101,22 @@ app.post("/api/users/login", async (req, res) => {
       console.log("wrong combo");
     } else {
       const accessToken = createTokens(user); // creating token
-      console.log("GOT TOKEN" + " " + accessToken + 'USER ID' + " " +user._id);
 
+      console.log(
+        "GOT TOKEN" + " " + accessToken + "USER ID" + " " + user._id,
+        user
+      );
 
       res.cookie("access-token", accessToken, {
-        
         maxAge: 60 * 60 * 24 * 30 * 1000,
         httpOnly: false,
-          }) ;
+      });
 
-
-      res.json({ accessToken, isSuccess: true ,userName: username, id: user._id  }); // if username & password are good
+      res.json({
+        accessToken,
+        isSuccess: true,
+        user,
+      }); // if username & password are good
 
       console.log("User Logged");
     }
@@ -120,10 +124,10 @@ app.post("/api/users/login", async (req, res) => {
 });
 
 app.get("/api/users/profile", validateToken, (req, res) => {
-  res.json("profileHere"); // only if user logged in , got token
+  res.send("profileHere"); // only if user logged in , got token
 });
 
-//user login check 
+//user login check
 
 //routes for users
 app.post("/api/users/register", addUserAuthController);

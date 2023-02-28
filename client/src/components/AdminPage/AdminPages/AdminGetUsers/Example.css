@@ -1,4 +1,23 @@
-.all-users{
-    display: flex;
-    flex-direction: column;
-}
+
+table { 
+	width: 750px; 
+	border-collapse: collapse; 
+	}
+    
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+	background: #eee; 
+	}
+
+th { 
+	background: #3498db; 
+	color: white; 
+	font-weight: bold; 
+	}
+
+td, th { 
+	padding: 10px; 
+	border: 1px solid #ccc; 
+	text-align: left; 
+	font-size: 18px;
+	}
