@@ -9,18 +9,8 @@ import { useState } from "react";
 
   
   const Example = () => {
-    const [formObject, setFormObject] = useState({
-      worker: {
-        _id: "",
-        userName: '',
-        firstName: '',
-        lastName: '',
+    const [allUsers, setAllUsers] = useState("");
 
-      },
-      email: '',
-      Admin: '',
-      password: '',
-    });
     
     function DeleteUser(userId) {
       fetch(`http://localhost:8000/api/users/deleteUser/${userId}`, {
@@ -33,7 +23,7 @@ import { useState } from "react";
       })
         .then((res) => res.json()) // or res.json()
         .then((res) =>
-          setFormObject(formObject.filter((user) => user._id !== res._id))
+        setAllUsers(allUsers.filter((user) => user._id !== res._id))
         );
     }
 
@@ -44,108 +34,45 @@ import { useState } from "react";
           "http://localhost:8000/api/users/getAllUsers"
         );
         const data = await respone.json();
-        setFormObject(data);
+        setAllUsers(data);
     
-        console.log(formObject);
+        console.log(allUsers);
       } catch (e) {
         console.log(e);
       }
-    };    const columns  = useMemo(
-      () => [
-        {
-          accessorKey: '_id', //access nested data with dot notation
-          header: 'ID',
-          size: 20, //small column
-
-        },
-        {
-          accessorKey: 'userName', //access nested data with dot notation
-          header: 'User Name',
-          size: 10,
-        },
-        {
-          accessorKey: 'firstName', //access nested data with dot notation
-          header: 'First Name',
-          size: 10,
-
-        },
-        {
-          accessorKey: 'lastName',
-          header: 'Last Name',
-          size: 20,
-
-        },
-        {
-          accessorKey: 'email', //normal accessorKey
-          header: 'Email',
-          size: 20,
-
-        },
-        {
-          accessorKey: 'password', //normal accessorKey
-          header: 'Password',
-          size: 20,
-
-        },
-        {
-          accessorKey: 'dateCreated', //normal accessorKey
-          header: 'Created On',
-          size: 20,
-
-        },
-        {
-          Header: "Delete",
-          id:'delete',
-            accessor: str => "delete",
-
-        Cell: (row)=> (
-          <span onClick={DeleteUser}>
-          Delete
-        </span> 
-) 
-          
-        },
-        {
-          accessorKey: 'isAdmin', //normal accessorKey
-          header: 'Admin',
-          value: "delete",
-          
-        },
-        
-        
-      
-   
-              
-          
-            ],
-      [],
-    );
-  
-    //Delete button need to add to react table
-    // function DeleteUser(userId) {
-    //   fetch(`http://localhost:8000/api/users/deleteUser/${userId}`, {
-    //     method: "DELETE",
-    //     mode: "cors",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //     },
-    //   })
-    //     .then((res) => res.json()) // or res.json()
-    //     .then((res) =>
-    //       setAllUsers(allUsers.filter((user) => user._id !== res._id))
-    //     );
-    // }
+    };   
+    
+    
+    
     return (
 
-      <div>
 
+
+<div>
 <button onClick={getAllUsers}>get all users</button>
+{allUsers.length
+    ? allUsers.map(user => (
+      <table class="my_table">
+  <tr>
+    <th>First Name</th>
+    <th>User name</th>
+    <th>Email</th>
+    <th>Date Created</th>
+  </tr>
+  <tr>
+    <td>{user.firstName}</td>
+    <td>{user.userName}</td>
+    <td>{user.email}</td>
+    <td>{user.dateCreated}</td>
+  </tr>
+</table>
+    ))
+    :  "No Data"
+  }  
+    </div>
+  );
+};
 
-<MaterialReactTable columns={columns} data={formObject}
- /> ;
-      </div>
-    ) 
-  };
+
   
   export default Example;;
