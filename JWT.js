@@ -1,42 +1,58 @@
-import jsonwebtoken from "jsonwebtoken";
+import jsonwebtoken  from 'jsonwebtoken';
+
 
 export const createTokens = (user) => {
-  const accessToken = jsonwebtoken.sign(
-    { username: user.username, id: user.id },
-    "jwtsecretplschange",
-    { expiresIn: "20s" }
-  );
-  return accessToken;
-};
-// export const addHeader = (req, res, next) => {
-//   if (!accessToken) {
-//     console.log("token: undefined");
-//   } else {
-//     req.headers.authorization = "Bearer " + accessToken;
-//   }
+        const accessToken = jsonwebtoken.sign(
+            
+            {username : user.username, id: user.id},
+                 "jwtsecretplschange",
+                 {expiresIn: "20m"}
+                 
+                 );
 
-//   next();
-// };
+
+            return accessToken
+
+};
+
+
+
+
+
 
 export const validateToken = (req, res, next) => {
-  const accessToken = req.cookies["access-token"];
+    const accessToken = req.cookies["access-token"];
+  
+    req.headers["authorization"] = accessToken
+    //   const token = authHeader && authHeader.split(" ")[1];
+    console.log(req.headers)
+    
 
-  if (!accessToken)
-    return res.status(400).json({ error: "User Not Authenticated!" }); //User didnt not sign and didnt get cookie attached
 
-  try {
-    const validToken = jsonwebtoken.verify(accessToken, "jwtsecretplschange");
 
-    if (validToken) {
-      console.log(validToken);
-      req.authenticated = true;
-      createTokens();
-      return next();
+    if(!accessToken) 
+    return res.status(400).json({error: "User Not Authenticated!"}) //User didnt not sign and didnt get cookie attached 
+
+
+    try {
+        
+        const validToken = jsonwebtoken.verify(accessToken, "jwtsecretplschange")
+
+        if (validToken){
+            
+            console.log(validToken )
+            req.authenticated = true; 
+            return next();
+
+        }
+
+    }catch (err){
+
+        return res.status(400).json({error : "Error not recognized Token - Please login again to get New Valid Token!" }) 
+
     }
-  } catch (err) {
-    return res.status(400).json({
-      error:
-        "Error not recognized Token - Please login again to get New Valid Token!",
-    });
-  }
-};
+
+
+} 
+
+ 

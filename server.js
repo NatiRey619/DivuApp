@@ -44,7 +44,7 @@ const app = express();
 
 import { UserModel } from "./models/UserModel.js";
 import bcrypt from "bcrypt";
-import { createTokens, validateToken } from "./JWT.js";
+import { createTokens, validateToken, } from "./JWT.js";
 
 import cookieParser from "cookie-parser";
 
@@ -80,11 +80,13 @@ app.post("/api/users/register", (req, res) => {
   });
 });
 
+
+
+
 app.post("/api/users/login", async (req, res) => {
   // working - checking if username exist in DB
 
   const { username, password } = req.body;
-
   console.log(username, password);
 
   const user = await UserModel.findOne({ userName: username });
@@ -123,7 +125,9 @@ app.post("/api/users/login", async (req, res) => {
   });
 });
 
+
 app.get("/api/users/profile", validateToken, (req, res) => {
+  
   res.send("profileHere"); // only if user logged in , got token
 });
 
@@ -143,7 +147,7 @@ app.delete("/api/users/deleteUser/:id", deleteUserController);
 app.get("/api/reports/getAllReports", getAllReportsController);
 app.get("/api/reports/getOneReport/:id", getOneReportsController);
 app.post("/api/reports/addReport", addReportsController);
-app.put("/api/reports/updateReport/:id", updateReportsController);
+app.put("/api/reports/updateReport/:id", updateReportsController); 
 app.delete("/api/reports/deleteReport/:id", deleteReportsController);
 
 //routes for Messages
