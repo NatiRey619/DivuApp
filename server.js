@@ -87,6 +87,7 @@ app.post("/api/users/login", async (req, res) => {
   // working - checking if username exist in DB
 
   const { username, password } = req.body;
+  
   console.log(username, password);
 
   const user = await UserModel.findOne({ userName: username });
@@ -111,7 +112,8 @@ app.post("/api/users/login", async (req, res) => {
 
       res.cookie("access-token", accessToken, {
         maxAge: 60 * 60 * 24 * 30 * 1000,
-        httpOnly: false,
+        httpOnly: true,
+        secure: false
       });
 
       res.json({
@@ -126,8 +128,10 @@ app.post("/api/users/login", async (req, res) => {
 });
 
 
+
+
+
 app.get("/api/users/profile", validateToken, (req, res) => {
-  
   res.send("profileHere"); // only if user logged in , got token
 });
 
