@@ -24,7 +24,9 @@ const UserLoginBody = () => {
         headers: {
           "Content-Type": "application/json",
           withCredentials: true,
+
         },
+
         body: JSON.stringify({ username: userInput, password: passInput }),
       });
 

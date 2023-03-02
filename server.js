@@ -82,7 +82,6 @@ app.post("/api/users/register", (req, res) => {
 
 
 
-
 app.post("/api/users/login", async (req, res) => {
   // working - checking if username exist in DB
 

@@ -37,9 +37,11 @@ export const validateToken = (req, res, next) => {
         const validToken = jsonwebtoken.verify(accessToken, "jwtsecretplschange")
 
         if (validToken){
-            
+            // headers.set('authorization', `Bearer ${validToken}`)
+            // req.headers.authorization
             console.log(validToken )
             req.authenticated = true; 
+            
             return next();
 
         }
@@ -48,7 +50,7 @@ export const validateToken = (req, res, next) => {
 
         return res.status(400).json({error : "Error not recognized Token - Please login again to get New Valid Token!" }) 
 
-    }
+    } 
 
 
 } 

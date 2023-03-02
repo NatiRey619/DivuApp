@@ -6,6 +6,8 @@ import "./Example.css";
 
 const Example = () => {
   const [allUsers, setAllUsers] = useState("");
+  const [userID, setUserID] = useState("");
+
 
   function DeleteUser(userId) {
     fetch(`http://localhost:8000/api/users/deleteUser/${userId}`, {
@@ -19,7 +21,10 @@ const Example = () => {
       .then((res) => res.json()) // or res.json()
 
       .then((res) =>
-        setAllUsers(allUsers.filter((user) => user._id !== res._id))
+        setAllUsers(allUsers.filter((user) => user._id !== res._id)
+        )
+        
+
       );
   }
 
@@ -56,7 +61,9 @@ const Example = () => {
                 <td>{user.email}</td>
                 <td>{user.dateCreated}</td>
                 <td>
-                  <button onClick={DeleteUser} className={user._id}>
+                  <button onClick=
+                  {DeleteUser} 
+                  className={user._id}>
                     DELETE
                   </button>
                 </td>
