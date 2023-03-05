@@ -1,6 +1,5 @@
 import { Table } from "@mui/material";
-import React, { useMemo } from "react";
-import MaterialReactTable from "material-react-table";
+import React from "react";
 import { useState } from "react";
 import "./Example.css";
 
@@ -10,7 +9,7 @@ const Example = () => {
 
 
   function DeleteUser(userId) {
-    fetch(`http://localhost:8000/api/users/deleteUser/${userId}`, {
+    fetch(`http://localhost:8000/api/users/deleteUser/${userId.target.className}`, {
       method: "DELETE",
       mode: "cors",
       headers: {
@@ -19,14 +18,15 @@ const Example = () => {
       },
     })
       .then((res) => res.json()) // or res.json()
-
       .then((res) =>
-        setAllUsers(allUsers.filter((user) => user._id !== res._id)
+        setAllUsers(allUsers.filter((user) => user._id !== userId.target.className))
+        
         )
         
 
-      );
+      
   }
+
 
   const getAllUsers = async () => {
     try {
