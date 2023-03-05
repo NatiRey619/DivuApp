@@ -1,12 +1,26 @@
-.add-new-user{
+.add-new-user {
+  display: flex;
+  align-items: center;
+  background-color: #678983;
+  width: 50%;
+}
+
+.register-button {
+  margin: 20px;
+}
+
+.register-input-field {
+  width: 70%;
+  height: 15%;
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
+}
+
+.show-password-div {
     display: flex;
-    align-items: center;
-    background-color: #678983;
-    
-
-
+    justify-content: end;
+    margin-left: auto;
+    margin-right: 15%;
 }
 
-.register-button{
-    margin: 20px;
-}
