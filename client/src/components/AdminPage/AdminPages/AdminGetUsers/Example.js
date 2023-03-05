@@ -45,6 +45,7 @@ const Example = () => {
   return (
     <div className="all-users">
       <button onClick={getAllUsers}>get all users</button>
+
       {allUsers.length
         ? allUsers.map((user) => (
             <table class="my_table">
