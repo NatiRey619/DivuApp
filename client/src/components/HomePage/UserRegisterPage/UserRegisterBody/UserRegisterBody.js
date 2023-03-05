@@ -11,6 +11,9 @@ const UserRegisterBody = () => {
   const [PassFiveDigitsError, setPassFiveDigitsError] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   // const [meter, setMeter] = useState(false);
 
@@ -72,60 +75,80 @@ const UserRegisterBody = () => {
   return (
     <div className="add-new-user">
       <h2>Create New User</h2>
-      <label for="user-name">Enter User Name</label>
-      <input
-        onChange={(e) => {
-          setUserName(e.target.value);
-          isEmptyText(userName);
-        }}
-        name="user-name-val"
-        id="user-name"
-        type="text"
-      />
+      <div className="register-input-field">
+        <label for="user-name">User Name: </label>
+        <input
+          onChange={(e) => {
+            setUserName(e.target.value);
+            isEmptyText(userName);
+          }}
+          name="user-name-val"
+          id="user-name"
+          type="text"
+          placeholder="Enter user name"
+        />
+      </div>
 
-      <label for="first-name">Enter first name</label>
-      <input
-        onChange={(e) => {
-          setFirstName(e.target.value);
-          isEmptyText(firstName);
-        }}
-        name="first-name-val"
-        id="first-name"
-        type="text"
-      />
-
-      <label for="last-name">Enter last name</label>
-      <input
-        onChange={(e) => {
-          setLastName(e.target.value);
-          isEmptyText(lastName);
-        }}
-        name="last-name-val"
-        id="last-name"
-        type="text"
-      />
-
-      <label for="worker-email">Enter Email</label>
-      <input
-        onChange={(e) => {
-          setUserEmail(e.target.value);
-          isEmptyText(userEmail);
-        }}
-        name="worker-email-val"
-        id="worker-email"
-        type="text"
-      />
-
-      <label for="worker-password">Enter Password</label>
-      <input
-        onChange={(e) => {
-          setUserPassword(e.target.value);
-          isEmptyText(userPassword);
-        }}
-        name="worker-password-val"
-        id="worker-password"
-        type="text"
-      />
+      <div className="register-input-field">
+        <label for="first-name">First Name: </label>
+        <input
+          onChange={(e) => {
+            setFirstName(e.target.value);
+            isEmptyText(firstName);
+          }}
+          name="first-name-val"
+          id="first-name"
+          type="text"
+          placeholder="Enter your first name"
+        />
+      </div>
+      <div className="register-input-field">
+        <label for="last-name">Last Name: </label>
+        <input
+          onChange={(e) => {
+            setLastName(e.target.value);
+            isEmptyText(lastName);
+          }}
+          name="last-name-val"
+          id="last-name"
+          type="text"
+          placeholder="Enter your last name"
+        />
+      </div>
+      <div className="register-input-field">
+        <label for="worker-email">Email: </label>
+        <input
+          onChange={(e) => {
+            setUserEmail(e.target.value);
+            isEmptyText(userEmail);
+          }}
+          name="worker-email-val"
+          id="worker-email"
+          type="email"
+          placeholder="Enter your email"
+        />
+      </div>
+      <div className="register-input-field">
+        <label for="worker-password">Password: </label>
+        <input
+          onChange={(e) => {
+            setUserPassword(e.target.value);
+            isEmptyText(userPassword);
+          }}
+          name="worker-password-val"
+          id="worker-password"
+          type={showPassword ? "text" : "password"}
+          placeholder="Enter password"
+        />
+      </div>
+      <div className="show-password-div">
+        <input
+          className="show-password-checkbox"
+          type="checkbox"
+          onClick={handleClickShowPassword}
+        />
+        <label>Show password</label>
+      </div>
 
       {/* <div>
         <div className="password-strength-meter"></div>
