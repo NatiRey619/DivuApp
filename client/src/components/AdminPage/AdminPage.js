@@ -13,6 +13,8 @@ const AdminPage = () => {
   const navigate = useNavigate()
   const [isShown, setIsShown] = useState(false);
   const [isShown2, setIsShown2] = useState(false);
+  const [isShown3, setIsShown3] = useState(false);
+
 
 
   const handleClickGETUSERS = event => {
@@ -23,9 +25,15 @@ const AdminPage = () => {
   const handleClickADDUSER = event => {
     setIsShown2(current => !current)
   }
+const handleClickEditUser = event =>{
+  setIsShown3(current =>!current)
+
+}
 
   return (
     <div className="admin-page">
+          <div className="page-container">
+
 
 <h1>Admin Page</h1>
 
@@ -33,22 +41,29 @@ const AdminPage = () => {
 
 
 
-      <button onClick={handleClickGETUSERS}>ALL USERS</button>
+      <button onClick={handleClickGETUSERS}>Current Users</button>
             {isShown && (
-        <div>
+        <div >
       <AdminGetUsers />
         </div>
       )}
 
 
-      <br></br>
-              <button onClick={handleClickADDUSER}>ADD USER</button>
+              
+              <button onClick={handleClickADDUSER}>Add New User</button>
 
               {isShown2 && (
-        <div>
+        <div className="admin-new-user" >
       <AdminNewUser />
         </div>
       )}
+
+      <button onClick={handleClickEditUser}>Edit User</button>
+                {isShown3 && (
+                  <div>Nothing Yet</div>
+                )}
+    </div>
+
 
     </div>
     </div>

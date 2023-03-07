@@ -49,6 +49,7 @@ const Example = () => {
       {allUsers.length
         ? allUsers.map((user) => (
             <table class="my_table">
+              <thead>
               <tr>
                 <th>First Name</th>
                 <th>User name</th>
@@ -56,6 +57,8 @@ const Example = () => {
                 <th>Date Created</th>
                 <th>DELETE USER</th>
               </tr>
+              </thead>
+          
               <tr>
                 <td>{user.firstName}</td>
                 <td>{user.userName}</td>
