@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import "./AdminPage.css";
 import AdminNewUser from "./AdminPages/AdminNewUser/AdminNewUser";
 import AdminGetUsers from "./AdminPages/AdminGetUsers/AdminGetUsers";
+import AdminGetMessages from "./AdminPages/AdminMessages/AdminGetMessages";
 import { useNavigate } from "react-router-dom";
 
 const AdminPage = () => {
@@ -25,7 +26,7 @@ const AdminPage = () => {
   const handleClickADDUSER = event => {
     setIsShown2(current => !current)
   }
-const handleClickEditUser = event =>{
+const handleClickMessages = event =>{
   setIsShown3(current =>!current)
 
 }
@@ -43,9 +44,7 @@ const handleClickEditUser = event =>{
 
       <button onClick={handleClickGETUSERS}>Current Users</button>
             {isShown && (
-        <div >
       <AdminGetUsers />
-        </div>
       )}
 
 
@@ -58,9 +57,9 @@ const handleClickEditUser = event =>{
         </div>
       )}
 
-      <button onClick={handleClickEditUser}>Edit User</button>
+      <button onClick={handleClickMessages}>All Messages</button>
                 {isShown3 && (
-                  <div>Nothing Yet</div>
+                  <div>< AdminGetMessages/></div>
                 )}
     </div>
 

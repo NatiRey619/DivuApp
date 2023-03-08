@@ -27,7 +27,7 @@ const PmManger = () => {
    function AddNewMessage() { // wont work now since Ive added User to Model
     //need to finish JWT Auth so then ill always have user ID.
     //but its working trough POSTMAN with MANUAL USER ID
-    // Send data to the backend via POST
+    // Send data to the backend via POST 
     fetch("http://localhost:8000/api/messages/addMessage", {
       // Enter your IP address here
       method: "POST",
