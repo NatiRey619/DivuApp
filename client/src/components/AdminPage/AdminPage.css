@@ -28,8 +28,10 @@ h1{
     font-size: 50px;
 }
 
-.admin-new-user{
-    display: flex;
-    flex-direction: column;
-    background-color: red;
+
+
+.admin-get{
+    position: absolute;
+    
+
 }

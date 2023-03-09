@@ -24,4 +24,8 @@ td, th {
 
 	.all-users{
 		display: flex;
+		flex-direction: column;
+		size: 10px;
+		position: static;
+
 	}

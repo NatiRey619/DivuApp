@@ -44,7 +44,7 @@ const handleClickMessages = event =>{
 
       <button onClick={handleClickGETUSERS}>Current Users</button>
             {isShown && (
-      <AdminGetUsers />
+      <div className="admin-get"><AdminGetUsers /></div>
       )}
 
 
@@ -52,14 +52,12 @@ const handleClickMessages = event =>{
               <button onClick={handleClickADDUSER}>Add New User</button>
 
               {isShown2 && (
-        <div className="admin-new-user" >
       <AdminNewUser />
-        </div>
       )}
 
       <button onClick={handleClickMessages}>All Messages</button>
                 {isShown3 && (
-                  <div>< AdminGetMessages/></div>
+                  < AdminGetMessages/>
                 )}
     </div>
 
