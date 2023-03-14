@@ -44,7 +44,7 @@ const handleClickMessages = event =>{
 
       <button onClick={handleClickGETUSERS}>Current Users</button>
             {isShown && (
-      <div className="admin-get"><AdminGetUsers /></div>
+      <div className="admin-get-users"><AdminGetUsers /></div>
       )}
 
 
@@ -52,19 +52,19 @@ const handleClickMessages = event =>{
               <button onClick={handleClickADDUSER}>Add New User</button>
 
               {isShown2 && (
-      <AdminNewUser />
+     <div className="admin-add-users"> <AdminNewUser /> </div>
       )}
 
       <button onClick={handleClickMessages}>All Messages</button>
                 {isShown3 && (
-                  < AdminGetMessages/>
-                )}
+                 <div className="admin-get-messages">< AdminGetMessages/></div>
+                )} 
     </div>
 
 
     </div>
     </div>
   );
-};
+}; 
 
 export default AdminPage;

@@ -1,4 +1,9 @@
 .all-messages{
     display: block;
+    margin: 20px;
     
+}
+
+.my_table{
+    display: flex;
 }

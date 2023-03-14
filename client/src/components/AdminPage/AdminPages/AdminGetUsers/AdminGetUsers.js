@@ -15,7 +15,6 @@ const AdminGetUsers = () => {
 
   return (
     <div className="get-all-users">
-      <h2>Pull all users</h2>
       < Example />
 
     </div>

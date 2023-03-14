@@ -72,7 +72,7 @@ const Example = () => {
   return (
     <div className="all-users">
       <button onClick={getAllUsers}>get all users</button>
-
+      <div className="users-content">
       {allUsers.length
         ? allUsers.map((user) => (
             <table class="my_table">
@@ -127,6 +127,7 @@ const Example = () => {
             </table>
           ))
         : "No Data"} 
+    </div>
     </div>
     // <div className="all-users">
     //   <button onClick={getAllUsers}>get all users</button>

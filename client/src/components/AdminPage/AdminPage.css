@@ -1,7 +1,6 @@
 .admin-page{
     display: flex;
     justify-content: center;
-    align-items: center;
     text-align: center;
     width: 100vw;
     height: 100vh;
@@ -14,11 +13,13 @@
 
 
 }
+.admin-funcs button{
+   margin:10px;
+
+
+}
 
 .page-container{
-    width: 500px;
-    height: 500px;
-    background-color: wheat;
     margin: 10px;
     border-radius: 20px;
 }
@@ -30,8 +31,25 @@ h1{
 
 
 
-.admin-get{
+.admin-get-users{
     position: absolute;
     
+    margin: 50px;
 
-}
+}  
+
+.admin-add-users{
+    position: absolute;
+
+    margin: 50px;
+    
+
+}  
+.admin-get-messages{
+    position: absolute;
+
+    margin: 50px;
+    
+
+}  
+

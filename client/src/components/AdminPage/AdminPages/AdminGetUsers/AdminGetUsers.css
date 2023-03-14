@@ -2,7 +2,10 @@
 .get-all-users{
 	display: flex;
 	flex-direction: column;
+	margin: 20px;
 }
+
+
 /* 
 Max width before this PARTICULAR table gets nasty
 This query will take effect for any screen smaller than 760px

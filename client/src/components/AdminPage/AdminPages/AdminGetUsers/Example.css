@@ -1,7 +1,8 @@
 
 table { 
-	width: 600px; 
+	width: 200px; 
 	border-collapse: collapse; 
+	margin: 10px;
 	}
     
 /* Zebra striping */
@@ -27,5 +28,10 @@ td, th {
 		flex-direction: column;
 		size: 10px;
 		position: static;
+		align-items: center
 
+	}
+	.users-content{
+		width: 500;
+		height: 50px;
 	}
