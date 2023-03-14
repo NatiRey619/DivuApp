@@ -22,6 +22,8 @@ const getAllPms = async () => {
 
   return (
     <div className='all-messages'>
+                <div className='table-container'>
+
         <button onClick={getAllPms}>Show All Messages</button>
         {allMessages.length
         ? allMessages.map((pm) => (
@@ -48,6 +50,8 @@ const getAllPms = async () => {
         : "Please Reload"} 
 
     </div>
+    </div>
+
   )
 }
 
