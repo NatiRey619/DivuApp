@@ -2,10 +2,12 @@ import { Table } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 import "./Example.css";
+import SearchBar from "material-ui-search-bar";
 
 const Example = () => {
   const [allUsers, setAllUsers] = useState("");
   const [userID, setUserID] = useState("");
+  const [searched, setSearched] = useState("");
 
   const [workerFName, setWorkerFName] = useState('')
   const [workerUserName, setWorkerUserName] = useState('')
@@ -54,6 +56,19 @@ const Example = () => {
       
   }
 
+  const requestSearch = (searchedVal) => {
+    const filteredMessage = allUsers.filter((row) => {
+      return row.userName.toLowerCase().includes(searchedVal.toLowerCase())
+    })
+    setAllUsers(filteredMessage)
+
+  }
+
+  const cancelSearch = () => {
+    setSearched("");
+    requestSearch(searched);
+  };
+
 
   const getAllUsers = async () => {
     try {
@@ -72,6 +87,13 @@ const Example = () => {
   return (
     <div className="all-users">
       <button onClick={getAllUsers}>get all users</button>
+      <SearchBar
+          placeholder="Search By Name"
+          value={searched}
+          onChange={(searchVal) => requestSearch(searchVal)}
+          onCancelSearch={() => cancelSearch()}
+        />      
+
       <div className="users-content">
       {allUsers.length
         ? allUsers.map((user) => (
