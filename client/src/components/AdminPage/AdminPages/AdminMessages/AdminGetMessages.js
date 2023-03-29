@@ -43,6 +43,10 @@ const getAllPms = async () => {
     })
     setAllMessages(filteredMessage)
 
+    if (!filteredMessage){
+      setAllMessages(filteredMessage)
+    }
+
   }
 
   const cancelSearch = () => {
@@ -58,7 +62,7 @@ const getAllPms = async () => {
   });
  
 
-
+   
 
   return (
     <div className='all-messages'>
@@ -71,11 +75,12 @@ const getAllPms = async () => {
           onChange={(searchVal) => requestSearch(searchVal)}
           onCancelSearch={() => cancelSearch()}
         />      
+        <h4>Total Messages : {allMessages.length}</h4>
 
     {allMessages.length
         ? allMessages.map((pm) => (
           <TableContainer>
-            <Table className={useStyles}>
+            <Table  className={useStyles}>
             <TableHead>
               <TableRow>
                 <TableCell>ID</TableCell>
@@ -118,7 +123,7 @@ const getAllPms = async () => {
               </thead>
           
               <tr>
-                <td>{pm._id}</td>
+                <td>{pm._id}</td> 
                 <td>{pm.workerName}</td>
                 <td>{pm.innerMessage}</td>
 
@@ -133,5 +138,5 @@ const getAllPms = async () => {
 
   )
 }
-
+ 
 export default AdminGetMessages

@@ -61,8 +61,8 @@ const handleClickMessages = event =>{
                 )} 
     </div>
 
-
     </div>
+
     </div>
   );
 }; 

@@ -93,7 +93,7 @@ const Example = () => {
           onChange={(searchVal) => requestSearch(searchVal)}
           onCancelSearch={() => cancelSearch()}
         />      
-
+      <h4>Workers Avaiable : {allUsers.length}</h4>
       <div className="users-content">
       {allUsers.length
         ? allUsers.map((user) => (

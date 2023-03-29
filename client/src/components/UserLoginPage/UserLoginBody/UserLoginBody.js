@@ -8,7 +8,6 @@ const UserLoginBody = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
 
   const [passFiveDigitsError, setPassFiveDigitsError] = useState("");
   const [userList, setUserList] = useState([]);
@@ -16,6 +15,7 @@ const UserLoginBody = () => {
   const [userInput, setUserInput] = useState();
 
   const newPost = async () => {
+
     try {
       const response = await fetch("http://localhost:8000/api/users/login/", {
         method: "POST",
@@ -25,18 +25,25 @@ const UserLoginBody = () => {
           "Content-Type": "application/json",
           withCredentials: true,
 
+
         },
 
         body: JSON.stringify({ username: userInput, password: passInput }),
+        
+        
       });
+      console.log(userList);
 
       const data = await response.json();
       console.log(data);
+
+
+
       if (data.isSuccess) {
         navigate(`/homepage`);
       }
     } catch (error) {
-      console.error(error);
+      console.error(error); 
     }
     setError("Wrong Username and Password combo");
   };
@@ -91,6 +98,7 @@ const UserLoginBody = () => {
       );
       const data = await respone.json();
       setUserList(data);
+
       setIsLoading(false);
     } catch (e) {
       console.log(e);
