@@ -16,7 +16,7 @@ const AdminGetMessages = () => {
 
 
 
-const [allMessages, setAllMessages] = useState(''); 
+const [allMessages, setAllMessages] = useState(""); 
 const [searched, setSearched] = useState("");
 
 const getAllPms = async () => {
@@ -77,7 +77,7 @@ const getAllPms = async () => {
         />      
         <h4>Total Messages : {allMessages.length}</h4>
 
-    {allMessages.length
+    <>{allMessages.length
         ? allMessages.map((pm) => (
           <TableContainer>
             <Table  className={useStyles}>
@@ -104,7 +104,7 @@ const getAllPms = async () => {
                     </Table>
             </TableContainer>
           ))
-        : "Please Reload"} 
+        : "Please Reload"} </>
 
 
 

@@ -17,7 +17,6 @@ const AdminPage = () => {
   const [isShown3, setIsShown3] = useState(false);
 
 
-
   const handleClickGETUSERS = event => {
     // 👇️ toggle shown state
     setIsShown(current => !current);
@@ -57,6 +56,7 @@ const handleClickMessages = event =>{
 
       <button onClick={handleClickMessages}>All Messages</button>
                 {isShown3 && (
+                  
                  <div className="admin-get-messages">< AdminGetMessages/></div>
                 )} 
     </div>

@@ -12,10 +12,14 @@ const Example = () => {
   const [workerFName, setWorkerFName] = useState('')
   const [workerUserName, setWorkerUserName] = useState('')
   const [workerEmail, setWorkerEmail] = useState('')
+  const [isShown, setIsShown] = useState(false);
 
-
-
-
+  const handleGetUsers = event =>{
+    setIsShown(current =>!current)
+    setAllUsers(0)
+  
+  }
+  
 
   function editUser (userId) {
 
@@ -37,6 +41,7 @@ const Example = () => {
  
 
 
+  
   function DeleteUser(userId) {
     fetch(`http://localhost:8000/api/users/deleteUser/${userId.target.className}`, {
       method: "DELETE",
@@ -57,10 +62,12 @@ const Example = () => {
   }
 
   const requestSearch = (searchedVal) => {
+    
     const filteredMessage = allUsers.filter((row) => {
       return row.userName.toLowerCase().includes(searchedVal.toLowerCase())
     })
     setAllUsers(filteredMessage)
+    console.log(filteredMessage)
 
   }
 
@@ -86,11 +93,13 @@ const Example = () => {
 
   return (
     <div className="all-users">
-      <button onClick={getAllUsers}>get all users</button>
+      <button onClick={getAllUsers}>Get Users</button>
+      <button onClick={handleGetUsers}>Close</button>
+
       <SearchBar
           placeholder="Search By Name"
           value={searched}
-          onChange={(searchVal) => requestSearch(searchVal)}
+          onChange={(searchedVal) => requestSearch(searchedVal)}
           onCancelSearch={() => cancelSearch()}
         />      
       <h4>Workers Avaiable : {allUsers.length}</h4>

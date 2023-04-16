@@ -31,13 +31,16 @@ h1{
 
 
 
-.admin-get-users{
+.admin-get-users {
     position: absolute;
-    
-    margin: 50px;
-    
-
-}  
+    top: 50px; /* adjust as needed */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    z-index: 0;
+    padding: 150px;
+  }
 
 .admin-add-users{
     position: absolute;
